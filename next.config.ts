@@ -1,4 +1,25 @@
 import type { NextConfig } from "next";
+import { PHASE_PRODUCTION_BUILD } from "next/constants";
+
+/**
+ * Senza un URL pubblico valido canonical, sitemap e Open Graph finirebbero su localhost.
+ * Meglio fermare la build che pubblicare un sito con i link sbagliati.
+ */
+function verificaUrlPubblico() {
+  const url = process.env.NEXT_PUBLIC_SITE_URL;
+  const errore = (motivo: string) =>
+    new Error(`NEXT_PUBLIC_SITE_URL ${motivo}. Impostalo con l'indirizzo pubblico del sito (vedi .env.example).`);
+  if (!url) throw errore("non è impostato");
+  let host: string;
+  try {
+    const { protocol, hostname } = new URL(url);
+    if (protocol !== "https:" && protocol !== "http:") throw new Error();
+    host = hostname;
+  } catch {
+    throw errore(`non è un indirizzo valido ("${url}")`);
+  }
+  if (host === "localhost" || host === "127.0.0.1") throw errore(`punta a ${host}`);
+}
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -33,4 +54,7 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default function config(fase: string): NextConfig {
+  if (fase === PHASE_PRODUCTION_BUILD) verificaUrlPubblico();
+  return nextConfig;
+}
