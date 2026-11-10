@@ -45,7 +45,7 @@ export default function Privacy() {
           <p>[Da definire: tempo di conservazione dei messaggi, ad esempio 12 mesi dall’ultima comunicazione.]</p>
           <h2>A chi li comunichiamo</h2>
           <p>
-            I dati sono visti dal personale autorizzato di {t.unit} e dal fornitore del servizio email usato per
+            I dati sono visti dal personale autorizzato di {t.ragioneSociale} e dal fornitore del servizio email usato per
             recapitare i messaggi [da indicare]. Non sono diffusi né venduti.
           </p>
           <h2>I tuoi diritti</h2>

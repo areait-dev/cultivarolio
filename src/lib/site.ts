@@ -25,7 +25,6 @@ export const site = {
 
   titolare: {
     ragioneSociale: "Promotergroup S.p.A.",
-    unit: "PromoCommunication",
     sede: "Via del Carubo sn, Vittoria (RG)",
     telefono: "0932 862613",
     email: "comunicazione@promotergroup.eu",

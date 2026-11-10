@@ -35,10 +35,6 @@ export default function Contatti() {
                 {t.ragioneSociale}
               </TitoloDisplay>
               <p>
-                <strong>Unit</strong>
-                {t.unit}
-              </p>
-              <p>
                 <strong>Sede</strong>
                 {t.sede}
               </p>
