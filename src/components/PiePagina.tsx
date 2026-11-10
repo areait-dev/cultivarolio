@@ -15,7 +15,11 @@ export function PiePagina() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className={s.logo} src="/logo/cultivar-bone.svg" alt="Cultivar" width={192} height={48} loading="lazy" />
             <p className={s.descrizione}>
-              {site.titoloCompleto}. Un progetto di {titolare.unit}, Unit di {titolare.ragioneSociale} · P.IVA {titolare.piva}
+              {site.titoloCompleto}.
+              <br />
+              Un progetto di {titolare.unit}, Unit di {titolare.ragioneSociale}
+              <br />
+              P.IVA {titolare.piva}
             </p>
             <Social />
           </div>
