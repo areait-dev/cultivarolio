@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Illustrazione, Obiettivo, Pennellata, Territorio } from "@/components/Blocchi";
 import { HeroInterno } from "@/components/HeroInterno";
+import { InvitoCanale } from "@/components/InvitoCanale";
 import { Ruvido } from "@/components/Ruvido";
 import { Sezione } from "@/components/Sezione";
 import { Intro, TitoloDisplay, TitoloSezione } from "@/components/Testo";
@@ -101,6 +102,8 @@ export default async function IlProgetto() {
           </Ruvido>
         </div>
       </Sezione>
+
+      <InvitoCanale />
     </>
   );
 }

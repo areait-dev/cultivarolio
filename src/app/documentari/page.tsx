@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { HeroInterno } from "@/components/HeroInterno";
+import { InvitoCanale } from "@/components/InvitoCanale";
 import { JsonLd } from "@/components/JsonLd";
-import { Pulsante } from "@/components/Pulsante";
 import { Sezione } from "@/components/Sezione";
 import { Meta, TitoloDisplay } from "@/components/Testo";
 import { VideoYouTube } from "@/components/VideoYouTube";
@@ -89,16 +89,7 @@ export default async function Documentari() {
         ))}
       </Sezione>
 
-      <Sezione tono="kraft" stretta>
-        <div className={s.invito}>
-          <TitoloDisplay as="p" dimensione="m" className={s.invitoTesto}>
-            {t.invito}
-          </TitoloDisplay>
-          <Pulsante href={site.social.youtube}>
-            {t.pulsante}
-          </Pulsante>
-        </div>
-      </Sezione>
+      <InvitoCanale />
     </>
   );
 }

@@ -54,6 +54,22 @@
   justify-items: center;
   margin-bottom: 0;
 }
+@media (min-width: 961px) {
+  .sfalsata > :nth-child(2) {
+    transform: translateY(var(--space-7));
+  }
+  .sfalsata > :nth-child(3) {
+    transform: translateY(var(--space-5));
+  }
+  .sfalsata {
+    padding-bottom: var(--space-7);
+  }
+}
+.centro {
+  display: grid;
+  justify-items: center;
+  margin-bottom: 0;
+}
 .invito {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -81,9 +97,5 @@
   }
   .hero {
     padding-block: var(--space-6) var(--space-8);
-  }
-  .invito {
-    grid-template-columns: 1fr;
-    padding-block: var(--space-7);
   }
 }

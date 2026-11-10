@@ -1,5 +1,6 @@
 import { HeroInterno } from "@/components/HeroInterno";
 import { FiltriCategoria } from "@/components/FiltriCategoria";
+import { InvitoCanale } from "@/components/InvitoCanale";
 import { SchedaArticolo } from "@/components/Schede";
 import { Sezione } from "@/components/Sezione";
 import { TitoloSezione } from "@/components/Testo";
@@ -39,6 +40,8 @@ export async function ElencoBlog({ categoria }: { categoria?: string }) {
           <p>Nessun articolo in questa categoria.</p>
         )}
       </Sezione>
+
+      <InvitoCanale />
     </>
   );
 }

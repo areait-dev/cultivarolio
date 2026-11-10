@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { Illustrazione, Numero, Pennellata } from "@/components/Blocchi";
 import { JsonLd } from "@/components/JsonLd";
+import { InvitoCanale } from "@/components/InvitoCanale";
 import { Pulsante } from "@/components/Pulsante";
-import { Ruvido } from "@/components/Ruvido";
 import { SchedaArticolo, SchedaDocumentario } from "@/components/Schede";
 import { LinkTesto, Sezione, TestaSezione } from "@/components/Sezione";
-import { Social } from "@/components/Social";
 import { Intro, TitoloDisplay, TitoloSezione } from "@/components/Testo";
 import { getArticoli, getDocumentari } from "@/lib/content";
 import { assoluto, metaPagina } from "@/lib/seo";
@@ -131,24 +130,7 @@ export default async function Home() {
         </div>
       </Sezione>
 
-      <Sezione senzaSopra>
-        <Ruvido forma="pannello" tono="verde" className={s.invito}>
-          <div className={s.invitoTesto}>
-            <TitoloDisplay as="p" dimensione="m">
-              {t.invito.testo}
-            </TitoloDisplay>
-            <div className="azioni">
-              <Pulsante href={site.social.youtube} variante="chiaro">
-                {t.invito.pulsante}
-              </Pulsante>
-              <Social />
-            </div>
-          </div>
-          <div className={`${s.invitoImmagine} solo-desktop`}>
-            <Illustrazione src="/illustrazioni/oliva-bone.svg" larghezza={150} />
-          </div>
-        </Ruvido>
-      </Sezione>
+      <InvitoCanale />
     </>
   );
 }

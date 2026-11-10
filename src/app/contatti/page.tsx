@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Illustrazione } from "@/components/Blocchi";
 import { HeroInterno } from "@/components/HeroInterno";
+import { InvitoCanale } from "@/components/InvitoCanale";
 import { ModuloContatti } from "@/components/ModuloContatti";
 import { Ruvido } from "@/components/Ruvido";
 import { Sezione } from "@/components/Sezione";
@@ -54,6 +55,8 @@ export default function Contatti() {
           </Ruvido>
         </div>
       </Sezione>
+
+      <InvitoCanale />
     </>
   );
 }
