@@ -17,7 +17,7 @@ export default function InCostruzione() {
         <img
           className={s.immagine}
           src="/in-costruzione-desktop.png"
-          alt="Cultivar, storie di olio d’oliva IGP di Sicilia. Il sito è in costruzione. Per informazioni: comunicazione@promotergroup.eu"
+          alt="Cultivar, storie di olio d’oliva IGP di Sicilia. Il sito è in costruzione. Progetto cofinanziato dalla Regione Siciliana – Assessorato per le Attività Produttive – Iniziativa “Sicilia che piace 2026” – Capitolo di Bilancio 342525"
           fetchPriority="high"
         />
       </picture>
