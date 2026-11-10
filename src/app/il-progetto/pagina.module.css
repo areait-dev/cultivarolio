@@ -15,10 +15,15 @@
   display: grid;
   gap: var(--space-6);
 }
+/* Riquadro con il contorno ruvido verde; il testo resta nel colore normale */
 .storia {
   display: grid;
   gap: var(--space-3);
   align-content: start;
+  color: var(--verde-oliva);
+}
+.storia > * {
+  color: var(--testo);
 }
 .storia p {
   font-size: 0.9375rem;
@@ -26,11 +31,6 @@
 }
 .introTerritori {
   margin-block: var(--space-4) var(--space-7);
-}
-.ospitalita {
-  max-width: var(--misura-testo);
-  margin-top: var(--space-7);
-  font-size: 0.9375rem;
 }
 .colonna {
   display: grid;

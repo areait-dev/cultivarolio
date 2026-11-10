@@ -13,6 +13,9 @@
   max-width: 16ch;
   margin: var(--space-2) 0 var(--space-4);
 }
+.titolo.titoloAmpio {
+  max-width: 24ch;
+}
 .intro {
   font-size: var(--fs-lg);
   line-height: 1.6;

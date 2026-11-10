@@ -80,24 +80,20 @@ export const testi = {
           titolo: "I luoghi",
           testo:
             "I territori, i paesaggi, gli uliveti e i borghi di tre aree della Sicilia, fino agli spazi in cui l’olio prende forma.",
-          illustrazione: "/illustrazioni/ramo-lungo-colore.svg",
         },
         {
           titolo: "Le esperienze",
           testo: "Le voci e i mestieri di chi vive la filiera ogni giorno, dalla campagna al frantoio.",
-          illustrazione: "/illustrazioni/coppia-olive-carbone.svg",
         },
         {
           titolo: "I sapori",
           testo: "Le proprietà organolettiche, il gusto e la riconoscibilità dell’Olio EVO Sicilia IGP.",
-          illustrazione: "/illustrazioni/oliva-colore.svg",
         },
         {
           titolo: "Le pratiche innovazione e sostenibili", // REFUSO: forse "Le pratiche innovative e sostenibili"
           // REFUSO: "Temi coerenti della Strategia" (forse "con la")
           testo:
             "L’efficienza energetica, l’eco-innovazione e il recupero dei residui di molitura, per una filiera che guarda all’economia circolare e alla riduzione degli impatti ambientali. Temi coerenti della Strategia di Specializzazione Intelligente della Regione Siciliana (S3 Sicilia).",
-          illustrazione: "/illustrazioni/rametto-colore.svg",
         },
       ],
     },
@@ -105,8 +101,6 @@ export const testi = {
       titolo: "I territori del racconto",
       testo:
         "Il viaggio di Cultivar attraversa tre territori siciliani: Chiaramonte Gulfi, in provincia di Ragusa; Mirabella Imbaccari, in provincia di Catania; Partanna, in provincia di Trapani. Tre paesaggi diversi, una stessa cultura dell’olio.",
-      // REFUSO: manca una parola dopo "dei" (nell'anteprima: "frantoi")
-      ospitalita: "Le riprese sono state realizzate grazie all’ospitalità dei che hanno aperto i loro spazi al racconto.",
     },
     chi: {
       titolo: "Chi realizza il progetto",

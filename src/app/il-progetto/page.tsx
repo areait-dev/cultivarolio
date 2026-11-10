@@ -29,6 +29,7 @@ export default async function IlProgetto() {
       <HeroInterno
         occhiello="Il progetto"
         titolo={t.titolo}
+        titoloAmpio
         decorazione={{ src: "/illustrazioni/ramo-lungo-bone.svg", larghezza: 260 }}
       />
 
@@ -46,7 +47,7 @@ export default async function IlProgetto() {
       <Sezione tono="verde" labelledby="obiettivi">
         <div className={`griglia-2 ${s.inAlto}`}>
           <div>
-            <TitoloSezione id="obiettivi" className={s.titoloBlocco}>
+            <TitoloSezione id="obiettivi" maiuscolo className={s.titoloBlocco}>
               {t.obiettivi.titolo}
             </TitoloSezione>
             <div className={s.obiettivi}>
@@ -58,7 +59,7 @@ export default async function IlProgetto() {
             </div>
           </div>
           <div className={`${s.centro} solo-desktop`}>
-            <Illustrazione src="/illustrazioni/ramo-olive-bone.svg" larghezza={300} />
+            <Illustrazione src="/illustrazioni/ramo-olive-bone.svg" larghezza={380} />
           </div>
         </div>
       </Sezione>
@@ -69,13 +70,12 @@ export default async function IlProgetto() {
         </TitoloSezione>
         <div className="griglia-4">
           {t.storie.voci.map((v) => (
-            <div key={v.titolo} className={s.storia}>
-              <Illustrazione src={v.illustrazione} larghezza={64} />
+            <Ruvido key={v.titolo} forma="cornice" riquadro className={s.storia}>
               <TitoloDisplay as="h3" dimensione="s">
                 {v.titolo}
               </TitoloDisplay>
               <p>{v.testo}</p>
-            </div>
+            </Ruvido>
           ))}
         </div>
       </Sezione>
@@ -85,10 +85,9 @@ export default async function IlProgetto() {
         <Intro className={s.introTerritori}>{t.territori.testo}</Intro>
         <div className="griglia-3">
           {documentari.map((d) => (
-            <Territorio key={d.slug} luogo={d.luogo} nome={d.partner} />
+            <Territorio key={d.slug} luogo={d.luogo} />
           ))}
         </div>
-        <p className={s.ospitalita}>{t.territori.ospitalita}</p>
       </Sezione>
 
       <Sezione labelledby="chi">

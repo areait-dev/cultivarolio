@@ -10,16 +10,18 @@ type Props = {
   decorazione?: { src: string; larghezza: number };
   tono?: "verde" | "kraft";
   stretto?: boolean;
+  /** Titolo lungo: lascia più larghezza così va su due righe */
+  titoloAmpio?: boolean;
   children?: ReactNode;
 };
 
 /** Apertura delle pagine interne: occhiello (breadcrumb), titolo display, intro. */
-export function HeroInterno({ occhiello, titolo, intro, decorazione, tono = "verde", stretto, children }: Props) {
+export function HeroInterno({ occhiello, titolo, intro, decorazione, tono = "verde", stretto, titoloAmpio, children }: Props) {
   return (
     <section className={`${s.hero} superficie-${tono} carta`}>
       <div className={`contenitore ${stretto ? "contenitore--stretto" : ""}`}>
         {occhiello && <div className={s.occhiello}>{occhiello}</div>}
-        <TitoloDisplay as="h1" dimensione="xl" className={s.titolo}>
+        <TitoloDisplay as="h1" dimensione="xl" className={titoloAmpio ? `${s.titolo} ${s.titoloAmpio}` : s.titolo}>
           {titolo}
         </TitoloDisplay>
         {intro && <p className={s.intro}>{intro}</p>}

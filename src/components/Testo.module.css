@@ -9,6 +9,12 @@
   text-wrap: balance;
 }
 
+.maiuscolo {
+  font: var(--peso-medio) var(--fs-2xl) / 1.1 var(--famiglia-sans);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
 .display {
   font-family: var(--famiglia-display);
   font-weight: var(--peso-normale);

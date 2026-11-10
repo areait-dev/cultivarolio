@@ -9,10 +9,16 @@ export function Occhiello({ children, className, as: Tag = "p" }: Base & { as?: 
   return <Tag className={cx(s.occhiello, className)}>{children}</Tag>;
 }
 
-/** Titolo di sezione: Poppins maiuscolo. */
-export function TitoloSezione({ children, className, id, as: Tag = "h2" }: Base & { as?: ElementType }) {
+/** Titolo di sezione nel carattere del marchio; con `maiuscolo` è in Poppins maiuscolo (come nella presentazione). */
+export function TitoloSezione({
+  children,
+  className,
+  id,
+  as: Tag = "h2",
+  maiuscolo,
+}: Base & { as?: ElementType; maiuscolo?: boolean }) {
   return (
-    <Tag id={id} className={cx(s.titoloSezione, className)}>
+    <Tag id={id} className={cx(s.titoloSezione, maiuscolo && s.maiuscolo, className)}>
       {children}
     </Tag>
   );

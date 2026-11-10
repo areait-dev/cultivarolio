@@ -29,12 +29,11 @@ export function Obiettivo({ verbo, oggetto, children }: { verbo: string; oggetto
   );
 }
 
-/** Territorio: luogo + nome del partner, con filetto sopra. */
-export function Territorio({ luogo, nome }: { luogo: string; nome: string }) {
+/** Territorio: il nome del luogo, con filetto sopra. */
+export function Territorio({ luogo }: { luogo: string }) {
   return (
     <div className={s.territorio}>
-      <p className={s.luogo}>{luogo}</p>
-      <p className={s.territorioNome}>{nome}</p>
+      <p className={s.territorioNome}>{luogo}</p>
     </div>
   );
 }

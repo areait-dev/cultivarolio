@@ -310,7 +310,7 @@ export default async function DesignSystem() {
           <Obiettivo verbo="Valorizzare" oggetto="un’eccellenza certificata">
             Far conoscere la qualità dell’Olio EVO Sicilia IGP.
           </Obiettivo>
-          <Territorio luogo="Chiaramonte Gulfi (RG)" nome="Frantoi Cutrera srl" />
+          <Territorio luogo="Chiaramonte Gulfi (RG)" />
         </div>
         <div className={`superficie-bone carta ${s.texture}`}>
           <Meta>Carta: grana e fibre sopra la superficie</Meta>
