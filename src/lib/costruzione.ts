@@ -1,6 +1,6 @@
 /**
- * Interruttore "sito in costruzione". Con SITO_IN_COSTRUZIONE=1 tutte le pagine mostrano /in-costruzione,
- * i motori di ricerca non indicizzano nulla e la testata e il piè di pagina non compaiono.
- * Per pubblicare il sito: togliere la variabile (o metterla a 0) e rifare il deploy.
+ * Sito in costruzione: attivo di default. Tutte le pagine mostrano /in-costruzione, i motori di ricerca
+ * non indicizzano nulla e testata, piè di pagina e banner non compaiono.
+ * Per pubblicare il sito vero (dopo l'approvazione): impostare SITO_PUBBLICO=1 nell'ambiente e rifare il deploy.
  */
-export const inCostruzione = process.env.SITO_IN_COSTRUZIONE === "1";
+export const inCostruzione = process.env.SITO_PUBBLICO !== "1";

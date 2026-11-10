@@ -108,6 +108,7 @@ VideoObject) nel CMS. Le copertine vanno servite dal sito, non da `i.ytimg.com`.
 
 ## Checklist pre-lancio
 
+- [ ] **Sito in costruzione**: oggi il sito pubblico mostra solo la pagina "in costruzione" (immagini in `public/in-costruzione-*.png`). Dopo l’approvazione: impostare `SITO_PUBBLICO=1` su Vercel e rifare il deploy.
 - [ ] **CUP** del progetto: `site.cofinanziamento.cup` in `src/lib/site.ts` (obbligatorio: finché è `null` il footer non mostra la riga CUP).
 - [ ] **Logo Regione Siciliana** nel footer: oggi è `public/logo/regione-siciliana.svg`, copiato da un altro progetto. Farlo confermare dal cliente o dalla Regione (versione ufficiale e regole d’uso).
 - [ ] **URL reali dei social** in `site.social` (ora sono le home dei portali).
