@@ -15,12 +15,12 @@ export const site = {
     { href: "/contatti", etichetta: "Contatti" },
   ],
 
-  // TODO: sostituire con gli URL reali dei profili
+  // TODO: manca l'URL del canale YouTube (ora punta alla home di YouTube)
   social: {
     youtube: "https://www.youtube.com/",
-    instagram: "https://www.instagram.com/",
-    facebook: "https://www.facebook.com/",
-    tiktok: "https://www.tiktok.com/",
+    instagram: "https://www.instagram.com/cultivarolio/",
+    facebook: "https://www.facebook.com/cultivarolio",
+    tiktok: "https://www.tiktok.com/@cultivarolio",
   },
 
   titolare: {
