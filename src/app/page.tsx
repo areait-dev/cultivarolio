@@ -54,9 +54,14 @@ export default async function Home() {
           <div>
             <h1 className={s.titolo}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className={s.logo} src="/logo/cultivar-bone.svg" alt="Cultivar" width={520} height={130} fetchPriority="high" />
-              <span className="sr-only">. </span>
-              <span className={s.sottotitoloDisplay}>{t.titoloResto}</span>
+              <img
+                className={s.logo}
+                src="/logo/cultivar-payoff-bone.png"
+                alt={`Cultivar. ${t.titoloResto}`}
+                width={520}
+                height={177}
+                fetchPriority="high"
+              />
             </h1>
             <p className={s.heroTesto}>{t.sottotitolo}</p>
             <div className="azioni">
@@ -69,7 +74,7 @@ export default async function Home() {
             </div>
           </div>
           <div className={s.heroImmagine}>
-            <Illustrazione src="/illustrazioni/ramo-olive-bone.svg" larghezza={400} />
+            <Illustrazione src="/illustrazioni/ramo-olive-carbone.svg" larghezza={400} />
           </div>
         </div>
       </section>

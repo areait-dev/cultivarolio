@@ -15,16 +15,9 @@
   width: min(520px, 100%);
   height: auto;
 }
-.sottotitoloDisplay {
-  display: block;
-  margin: var(--space-4) 0 var(--space-5);
-  font: var(--peso-normale) var(--fs-3xl) / 1.1 var(--famiglia-display);
-  text-transform: lowercase;
-  text-wrap: balance;
-}
 .heroTesto {
   max-width: 36ch;
-  margin-bottom: var(--space-6);
+  margin: var(--space-5) 0 var(--space-6);
   font-size: var(--fs-lg);
   font-weight: var(--peso-medio);
   line-height: 1.55;
