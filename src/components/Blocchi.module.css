@@ -1,16 +1,17 @@
-/* Numero */
+/* Numero: la cifra ha la stessa misura dell'etichetta, sulla stessa linea di base */
 .numero {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-4);
-}
-.cifra {
-  font: var(--peso-normale) var(--fs-5xl) / 0.85 var(--famiglia-display);
+  display: grid;
+  gap: var(--space-2);
 }
 .numeroTitolo {
-  font: var(--peso-normale) var(--fs-2xl) / 1 var(--famiglia-display);
+  display: flex;
+  align-items: baseline;
+  gap: 0.3em;
+  font: var(--peso-normale) var(--fs-3xl) / 1 var(--famiglia-display);
   text-transform: lowercase;
-  margin: 6px 0;
+}
+.cifra {
+  font: inherit;
 }
 .numeroTesto {
   font-size: var(--fs-sm);

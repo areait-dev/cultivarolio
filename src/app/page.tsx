@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Illustrazione, Pennellata } from "@/components/Blocchi";
+import { Illustrazione, Numero, Pennellata } from "@/components/Blocchi";
 import { JsonLd } from "@/components/JsonLd";
 import { Pulsante } from "@/components/Pulsante";
 import { Ruvido } from "@/components/Ruvido";
@@ -86,9 +86,10 @@ export default async function Home() {
             {t.breve.paragrafi.map((p) => (
               <Intro key={p}>{p}</Intro>
             ))}
-            <p className={s.sintesi}>
-              Tre documentari da 15–20 minuti, tre territori: le province di Ragusa, Catania e Trapani.
-            </p>
+            <div className={s.numeri}>
+              <Numero cifra={3} titolo="territori" testo="Province di Ragusa, Catania e Trapani" />
+              <Numero cifra={3} titolo="documentari" testo="Da 15–20 minuti ciascuno" />
+            </div>
             <div>
               <Pulsante href="/il-progetto">
                 {t.breve.pulsante}
@@ -118,9 +119,6 @@ export default async function Home() {
       </Sezione>
 
       <Sezione labelledby="blog">
-        <div className={s.centro}>
-          <Illustrazione src="/illustrazioni/foglie-verde.svg" larghezza={300} />
-        </div>
         <TestaSezione azione={<LinkTesto href="/blog">{t.blog.link}</LinkTesto>}>
           <TitoloDisplay id="blog" dimensione="l">
             {t.blog.titolo}

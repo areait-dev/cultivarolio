@@ -14,7 +14,7 @@ export const testi = {
     pulsanteDocumentari: "Guarda i documentari",
     pulsanteProgetto: "Scopri il progetto",
     breve: {
-      titolo: "Il progetto il breve", // REFUSO: "in breve"
+      titolo: "Il progetto in breve",
       paragrafi: [
         // REFUSO: «IPG» invece di IGP; virgolette di apertura e chiusura diverse (“ … ’)
         "Ogni Cultivar ha una storia da raccontare. È la storia di un paesaggio e di un clima, di gesti tramandati da generazioni e di saperi che si rinnovano. “Cultivar. Storie di Olio d’Oliva IPG di Sicilia’, raccoglie queste storie e le trasforma in un racconto multimediale per immagini.",

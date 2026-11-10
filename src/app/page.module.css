@@ -31,12 +31,11 @@
   gap: var(--space-4);
   justify-items: start;
 }
-.sintesi {
-  max-width: 30ch;
-  margin-block: var(--space-3);
-  font: var(--peso-normale) var(--fs-xl) / 1.15 var(--famiglia-display);
-  text-transform: lowercase;
-  text-wrap: balance;
+.numeri {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6) var(--space-7);
+  margin-block: var(--space-5);
 }
 /* Griglia a mano: le schede non stanno tutte sulla stessa riga */
 @media (min-width: 961px) {

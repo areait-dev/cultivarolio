@@ -1,20 +1,18 @@
 import type { ReactNode } from "react";
 import s from "./Blocchi.module.css";
 
-/** Cifra grande + etichetta (es. "3 territori"). */
+/** Cifra + etichetta sulla stessa riga e della stessa misura (es. "3 territori"). */
 export function Numero({ cifra, titolo, testo }: { cifra: string | number; titolo: string; testo?: string }) {
   return (
     <div className={s.numero}>
-      <span className={s.cifra} aria-hidden="true">
-        {cifra}
-      </span>
-      <div>
-        <p className={s.numeroTitolo}>
-          <span className="sr-only">{cifra} </span>
-          {titolo}
-        </p>
-        {testo && <p className={s.numeroTesto}>{testo}</p>}
-      </div>
+      <p className={s.numeroTitolo}>
+        <span className={s.cifra} aria-hidden="true">
+          {cifra}
+        </span>
+        <span className="sr-only">{cifra} </span>
+        {titolo}
+      </p>
+      {testo && <p className={s.numeroTesto}>{testo}</p>}
     </div>
   );
 }
