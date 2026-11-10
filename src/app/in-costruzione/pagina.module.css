@@ -1,0 +1,34 @@
+.pagina {
+  display: grid;
+  place-items: center;
+  min-height: 100svh;
+  padding: var(--space-8) var(--gutter);
+  text-align: center;
+}
+.contenuto {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-5);
+  max-width: 36rem;
+}
+.logo {
+  width: min(100%, 26rem);
+  height: auto;
+}
+.titolo {
+  margin: var(--space-4) 0 0;
+  font: var(--peso-medio) var(--fs-2xl) / var(--lh-titolo) var(--famiglia-sans);
+}
+.testo {
+  margin: 0;
+  font-size: var(--fs-md);
+}
+.contatto {
+  margin: 0;
+  font-size: var(--fs-sm);
+  color: var(--testo-tenue);
+}
+.contatto a {
+  color: inherit;
+  text-underline-offset: 3px;
+}

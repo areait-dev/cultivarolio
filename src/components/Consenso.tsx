@@ -38,7 +38,7 @@ function leggi(): Preferenze | null {
   }
 }
 
-export function ConsensoProvider({ children }: { children: ReactNode }) {
+export function ConsensoProvider({ children, senzaBanner = false }: { children: ReactNode; senzaBanner?: boolean }) {
   const [preferenze, setPreferenze] = useState<Preferenze | null>(null);
   const [pronto, setPronto] = useState(false);
   const [aperto, setAperto] = useState(false);
@@ -69,7 +69,7 @@ export function ConsensoProvider({ children }: { children: ReactNode }) {
   return (
     <ConsensoContext.Provider value={valore}>
       {children}
-      {pronto && aperto && <Banner onScelta={salva} />}
+      {!senzaBanner && pronto && aperto && <Banner onScelta={salva} />}
     </ConsensoContext.Provider>
   );
 }

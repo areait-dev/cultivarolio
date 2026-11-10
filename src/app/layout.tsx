@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { ConsensoProvider } from "@/components/Consenso";
 import { PiePagina } from "@/components/PiePagina";
 import { Testata } from "@/components/Testata";
+import { inCostruzione } from "@/lib/costruzione";
 import { site } from "@/lib/site";
 import { fontDisplay, fontSans } from "./fonts";
 import "./globals.css";
@@ -37,15 +38,18 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="it" className={`${fontSans.variable} ${fontDisplay.variable}`}>
       <body>
-        <a href="#contenuto" className="salta-al-contenuto">
-          Vai al contenuto
-        </a>
-        <ConsensoProvider>
-          <Testata />
+        {!inCostruzione && (
+          <a href="#contenuto" className="salta-al-contenuto">
+            Vai al contenuto
+          </a>
+        )}
+        {/* In costruzione: niente testata, piè di pagina e banner (il provider resta, le pagine lo richiedono al build) */}
+        <ConsensoProvider senzaBanner={inCostruzione}>
+          {!inCostruzione && <Testata />}
           <main id="contenuto" tabIndex={-1}>
             {children}
           </main>
-          <PiePagina />
+          {!inCostruzione && <PiePagina />}
         </ConsensoProvider>
       </body>
     </html>

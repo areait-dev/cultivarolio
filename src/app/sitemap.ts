@@ -1,10 +1,12 @@
 import type { MetadataRoute } from "next";
 import { getArticoli } from "@/lib/content";
+import { inCostruzione } from "@/lib/costruzione";
 import { assoluto } from "@/lib/seo";
 
 export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  if (inCostruzione) return [];
   const articoli = await getArticoli();
   const fisse: MetadataRoute.Sitemap = [
     { url: assoluto("/"), changeFrequency: "monthly", priority: 1 },
