@@ -17,7 +17,7 @@ export function PiePagina() {
             <p className={s.descrizione}>
               {site.titoloCompleto}.
               <br />
-              Un progetto di {titolare.unit}, Unit di {titolare.ragioneSociale}
+              Un progetto di {titolare.ragioneSociale}
               <br />
               P.IVA {titolare.piva}
             </p>
