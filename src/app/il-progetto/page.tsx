@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Illustrazione, Obiettivo, Pennellata, Territorio } from "@/components/Blocchi";
+import { Illustrazione, Obiettivo, Pennellata, PITTOGRAMMA, Territorio } from "@/components/Blocchi";
 import { HeroInterno } from "@/components/HeroInterno";
 import { InvitoCanale } from "@/components/InvitoCanale";
 import { Ruvido } from "@/components/Ruvido";
@@ -30,7 +30,7 @@ export default async function IlProgetto() {
         occhiello="Il progetto"
         titolo={t.titolo}
         titoloAmpio
-        decorazione={{ src: "/illustrazioni/ramo-lungo-bone.svg", larghezza: 260 }}
+        decorazione={{ src: PITTOGRAMMA, larghezza: 200 }}
       />
 
       <Sezione>
@@ -38,7 +38,7 @@ export default async function IlProgetto() {
           <Intro grande>{t.introduzione}</Intro>
           <div className={s.centro}>
             <Pennellata>
-              <Illustrazione src="/illustrazioni/rametto-colore.svg" larghezza={200} />
+              <Illustrazione src="/illustrazioni/progetto.svg" larghezza={260} />
             </Pennellata>
           </div>
         </div>
@@ -68,8 +68,8 @@ export default async function IlProgetto() {
         <TitoloSezione id="storie" className={s.titoloBlocco}>
           {t.storie.titolo}
         </TitoloSezione>
-        <div className="griglia-4">
-          {t.storie.voci.map((v) => (
+        <div className={s.storie}>
+          {t.storie.voci.slice(0, 3).map((v) => (
             <Ruvido key={v.titolo} forma="cornice" riquadro className={s.storia}>
               <TitoloDisplay as="h3" dimensione="s">
                 {v.titolo}
@@ -77,6 +77,17 @@ export default async function IlProgetto() {
               <p>{v.testo}</p>
             </Ruvido>
           ))}
+          {t.storie.voci.slice(3).map((v) => (
+            <Ruvido key={v.titolo} forma="cornice" riquadro className={`${s.storia} ${s.storiaLarga}`}>
+              <TitoloDisplay as="h3" dimensione="m">
+                {v.titolo}
+              </TitoloDisplay>
+              <p>{v.testo}</p>
+            </Ruvido>
+          ))}
+          <div className={`${s.storieImmagine} solo-desktop`}>
+            <Illustrazione src="/illustrazioni/storie.svg" larghezza={230} />
+          </div>
         </div>
       </Sezione>
 

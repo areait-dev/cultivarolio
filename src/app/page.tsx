@@ -97,7 +97,7 @@ export default async function Home() {
           </div>
           <div className={s.centro}>
             <Pennellata>
-              <Illustrazione src="/illustrazioni/ramo-colore.svg" larghezza={280} />
+              <Illustrazione src="/illustrazioni/progetto.svg" larghezza={280} />
             </Pennellata>
           </div>
         </div>

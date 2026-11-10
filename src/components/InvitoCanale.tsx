@@ -26,7 +26,7 @@ export function InvitoCanale() {
           </div>
         </div>
         <div className={`${s.immagine} solo-desktop`}>
-          <Illustrazione src="/illustrazioni/oliva-bone.svg" larghezza={150} />
+          <Illustrazione src="/illustrazioni/canali.svg" larghezza={190} />
         </div>
       </Ruvido>
     </Sezione>

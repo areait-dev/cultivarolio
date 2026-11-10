@@ -82,6 +82,7 @@ export function Illustrazione({
 const DIMENSIONI: Record<string, [number, number]> = {
   "/illustrazioni/alloro-bone.svg": [354, 318],
   "/illustrazioni/alloro-carbone.svg": [354, 318],
+  "/illustrazioni/canali.svg": [912, 1025],
   "/illustrazioni/coppia-olive-bone.svg": [293, 289],
   "/illustrazioni/coppia-olive-carbone.svg": [293, 289],
   "/illustrazioni/foglie-carbone.svg": [327, 137],
@@ -91,12 +92,14 @@ const DIMENSIONI: Record<string, [number, number]> = {
   "/illustrazioni/oliva-colore.svg": [193, 255],
   "/illustrazioni/rametto-bone.svg": [262, 534],
   "/illustrazioni/rametto-colore.svg": [262, 534],
+  "/illustrazioni/progetto.svg": [789, 1084],
   "/illustrazioni/ramo-colore.svg": [342, 459],
   "/illustrazioni/ramo-lungo-bone.svg": [268, 254],
   "/illustrazioni/ramo-lungo-carbone.svg": [268, 254],
   "/illustrazioni/ramo-lungo-colore.svg": [268, 254],
   "/illustrazioni/ramo-olive-bone.svg": [496, 614],
   "/illustrazioni/ramo-olive-carbone.svg": [496, 614],
+  "/illustrazioni/storie.svg": [769, 1019],
   "/illustrazioni/tralcio-carbone.svg": [789, 142],
 };
 
