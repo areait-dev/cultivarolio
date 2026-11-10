@@ -7,6 +7,10 @@ import { site } from "@/lib/site";
 import { fontDisplay, fontSans } from "./fonts";
 import "./globals.css";
 
+// Il footer mostra l'anno corrente: le pagine statiche si rigenerano almeno una volta al giorno,
+// così a Capodanno non resta l'anno della build. Le pagine con un tempo più breve lo tengono.
+export const revalidate = 86400;
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: { default: site.titoloCompleto, template: `%s · ${site.nome}` },
