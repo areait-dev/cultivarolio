@@ -57,6 +57,7 @@ export function ModuloContatti() {
             required
             autoComplete="email"
             inputMode="email"
+            spellCheck={false}
             defaultValue={v.email}
             aria-invalid={!!e.email || undefined}
             aria-describedby={e.email ? "email-errore" : undefined}
