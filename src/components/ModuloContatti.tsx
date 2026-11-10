@@ -27,7 +27,15 @@ export function ModuloContatti() {
   }, [stato]);
 
   return (
-    <form action={azione} className={s.modulo} noValidate>
+    <form
+      action={azione}
+      className={s.modulo}
+      noValidate
+      // Il pulsante resta attivo (così non perde il focus): durante l'invio si blocca un secondo invio qui
+      onSubmit={(ev) => {
+        if (inCorso) ev.preventDefault();
+      }}
+    >
       <div ref={riepilogo} tabIndex={-1} aria-live="polite" className={s.esitoContenitore}>
         {stato.esito === "ok" && (
           <Ruvido forma="striscia" tono="lilla" riquadro role="status">
@@ -123,7 +131,7 @@ export function ModuloContatti() {
       </p>
 
       <div>
-        <Pulsante type="submit" disabled={inCorso} aria-disabled={inCorso}>
+        <Pulsante type="submit" aria-disabled={inCorso}>
           {inCorso ? "Invio in corso…" : "Invia"}
         </Pulsante>
       </div>
