@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Illustrazione } from "@/components/Blocchi";
+import { PITTOGRAMMA } from "@/components/Blocchi";
 import { HeroInterno } from "@/components/HeroInterno";
 import { InvitoCanale } from "@/components/InvitoCanale";
 import { ModuloContatti } from "@/components/ModuloContatti";
@@ -24,7 +24,7 @@ export default function Contatti() {
       <HeroInterno
         titolo={testi.contatti.titolo}
         intro={testi.contatti.intro}
-        decorazione={{ src: "/illustrazioni/oliva-bone.svg", larghezza: 140 }}
+        decorazione={{ src: PITTOGRAMMA, larghezza: 200 }}
       />
       <Sezione>
         <div className={s.griglia}>
@@ -50,7 +50,6 @@ export default function Contatti() {
                 <strong>Email</strong>
                 <a href={`mailto:${t.email}`}>{t.email}</a>
               </p>
-              <Illustrazione src="/illustrazioni/coppia-olive-carbone.svg" larghezza={120} />
             </div>
           </Ruvido>
         </div>

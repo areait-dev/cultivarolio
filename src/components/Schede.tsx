@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ArticoloSintesi, Documentario } from "@/lib/content/types";
 import { formattaData } from "@/lib/format";
+import { PITTOGRAMMA } from "./Blocchi";
 import { IconaPlay } from "./Icone";
 import { Ruvido } from "./Ruvido";
 import s from "./Schede.module.css";
@@ -11,10 +12,8 @@ export function SchedaDocumentario({ doc, livello = 3 }: { doc: Documentario; li
   return (
     <article className={s.scheda}>
       <div className={s.media} aria-hidden="true">
-        {doc.illustrazione && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img className={s.mediaIllustrazione} src={doc.illustrazione} alt="" loading="lazy" />
-        )}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className={s.mediaIllustrazione} src={PITTOGRAMMA} alt="" loading="lazy" />
         <span className={s.play}>
           <IconaPlay width={28} height={28} />
         </span>

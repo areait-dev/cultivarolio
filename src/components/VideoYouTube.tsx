@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useConsenso } from "./Consenso";
+import { PITTOGRAMMA } from "./Blocchi";
 import { IconaPlay } from "./Icone";
 import type { Immagine } from "@/lib/content/types";
 import s from "./VideoYouTube.module.css";
@@ -10,7 +11,6 @@ type Props = {
   titolo: string;
   youtubeId?: string;
   copertina?: Immagine;
-  illustrazione?: string;
   durata?: string;
 };
 
@@ -19,7 +19,7 @@ type Props = {
  * (zero peso, zero cookie). Al click: se c'è consenso parte subito,
  * altrimenti chiede conferma per quel singolo video. Usa youtube-nocookie.
  */
-export function VideoYouTube({ titolo, youtubeId, copertina, illustrazione, durata }: Props) {
+export function VideoYouTube({ titolo, youtubeId, copertina, durata }: Props) {
   const { preferenze, salva } = useConsenso();
   const [fase, setFase] = useState<"facciata" | "conferma" | "video">("facciata");
   const consenso = preferenze?.mediaEsterni === "accettato";
@@ -29,10 +29,10 @@ export function VideoYouTube({ titolo, youtubeId, copertina, illustrazione, dura
       {copertina ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img className={s.copertina} src={copertina.src} alt="" width={copertina.larghezza} height={copertina.altezza} loading="lazy" />
-      ) : illustrazione ? (
+      ) : (
         // eslint-disable-next-line @next/next/no-img-element
-        <img className={s.illustrazione} src={illustrazione} alt="" loading="lazy" />
-      ) : null}
+        <img className={s.illustrazione} src={PITTOGRAMMA} alt="" loading="lazy" />
+      )}
     </>
   );
 

@@ -100,4 +100,7 @@ const DIMENSIONI: Record<string, [number, number]> = {
   "/illustrazioni/tralcio-carbone.svg": [789, 142],
 };
 
+/** Pittogramma del marchio (il ramo d'olivo dell'apertura della home): intestazioni e anteprime video senza copertina. */
+export const PITTOGRAMMA = "/illustrazioni/ramo-olive-carbone.svg";
+
 export const ILLUSTRAZIONI = Object.keys(DIMENSIONI);

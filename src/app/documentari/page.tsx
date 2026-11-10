@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PITTOGRAMMA } from "@/components/Blocchi";
 import { HeroInterno } from "@/components/HeroInterno";
 import { InvitoCanale } from "@/components/InvitoCanale";
 import { JsonLd } from "@/components/JsonLd";
@@ -54,7 +55,7 @@ export default async function Documentari() {
         occhiello="Documentari"
         titolo={t.titolo}
         intro={t.intro}
-        decorazione={{ src: "/illustrazioni/grappolo-carbone.svg", larghezza: 140 }}
+        decorazione={{ src: PITTOGRAMMA, larghezza: 200 }}
       />
 
       <Sezione className={s.elenco}>
@@ -64,7 +65,6 @@ export default async function Documentari() {
               titolo={d.titolo}
               youtubeId={d.youtubeId}
               copertina={d.copertina}
-              illustrazione={d.illustrazione}
               durata={d.durata}
             />
             <div className={s.testo}>
@@ -80,8 +80,6 @@ export default async function Documentari() {
                 <dd>{d.luogo}</dd>
                 <dt>{t.etichette.durata}</dt>
                 <dd>{d.durata}</dd>
-                <dt>Con</dt>
-                <dd>{d.partner}</dd>
               </dl>
               <p>{d.descrizione}</p>
             </div>
