@@ -55,7 +55,7 @@ export default async function Documentari() {
         occhiello="Documentari"
         titolo={t.titolo}
         intro={t.intro}
-        decorazione={{ src: PITTOGRAMMA, larghezza: 200 }}
+        decorazione={{ src: PITTOGRAMMA, larghezza: 340 }}
       />
 
       <Sezione className={s.elenco}>

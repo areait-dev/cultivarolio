@@ -11,7 +11,7 @@ export default function NonTrovata() {
       occhiello="Errore 404"
       titolo="Pagina non trovata"
       intro="La pagina che cerchi non esiste più o l’indirizzo non è corretto."
-      decorazione={{ src: "/illustrazioni/rametto-bone.svg", larghezza: 160 }}
+      decorazione={{ src: "/illustrazioni/rametto-bone.svg", larghezza: 220 }}
     >
       <div className="azioni">
         <Pulsante href="/" variante="chiaro">

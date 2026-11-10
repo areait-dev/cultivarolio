@@ -22,7 +22,7 @@ export async function ElencoBlog({ categoria }: { categoria?: string }) {
         occhiello="Blog"
         titolo={t.titolo}
         intro={t.intro}
-        decorazione={{ src: PITTOGRAMMA, larghezza: 200 }}
+        decorazione={{ src: PITTOGRAMMA, larghezza: 340 }}
       />
       <Sezione className={s.elenco} labelledby="ultimi">
         <TitoloSezione id="ultimi" className={s.titolo}>

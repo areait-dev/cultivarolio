@@ -30,7 +30,7 @@ export default async function IlProgetto() {
         occhiello="Il progetto"
         titolo={t.titolo}
         titoloAmpio
-        decorazione={{ src: PITTOGRAMMA, larghezza: 200 }}
+        decorazione={{ src: PITTOGRAMMA, larghezza: 340 }}
       />
 
       <Sezione>

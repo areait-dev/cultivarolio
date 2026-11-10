@@ -24,7 +24,7 @@ export default function Contatti() {
       <HeroInterno
         titolo={testi.contatti.titolo}
         intro={testi.contatti.intro}
-        decorazione={{ src: PITTOGRAMMA, larghezza: 200 }}
+        decorazione={{ src: PITTOGRAMMA, larghezza: 340 }}
       />
       <Sezione>
         <div className={s.griglia}>
