@@ -30,8 +30,11 @@ export default function Cookie() {
           <p>
             I documentari sono ospitati su YouTube (Google) e incorporati con la modalità a privacy avanzata
             (youtube-nocookie.com). Finché non premi il pulsante di riproduzione non viene caricato nulla da YouTube.
-            Quando carichi un video, YouTube può impostare cookie propri e trattare dati secondo la sua informativa
-            [link da inserire].
+            Quando carichi un video, YouTube può impostare cookie propri e trattare dati secondo la{" "}
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+              sua informativa<span className="sr-only"> (si apre in una nuova scheda)</span>
+            </a>
+            .
           </p>
           <h2>Gestire le tue preferenze</h2>
           <p>

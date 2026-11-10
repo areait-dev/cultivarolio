@@ -45,8 +45,12 @@ export function PiePagina() {
             )}
             <p>
               {cofinanziamento.testo}
-              <br />
-              <strong>CUP: {cofinanziamento.cup ?? "[da inserire]"}</strong>
+              {cofinanziamento.cup && (
+                <>
+                  <br />
+                  <strong>CUP: {cofinanziamento.cup}</strong>
+                </>
+              )}
             </p>
           </div>
         </div>
