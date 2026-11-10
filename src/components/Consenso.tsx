@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { Pulsante } from "./Pulsante";
 import s from "./Consenso.module.css";
 
@@ -63,8 +63,11 @@ export function ConsensoProvider({ children }: { children: ReactNode }) {
 
   const riapri = useCallback(() => setAperto(true), []);
 
+  // valore stabile: chi usa il consenso (video, footer) si aggiorna solo se cambia davvero
+  const valore = useMemo(() => ({ preferenze, pronto, salva, riapri }), [preferenze, pronto, salva, riapri]);
+
   return (
-    <ConsensoContext.Provider value={{ preferenze, pronto, salva, riapri }}>
+    <ConsensoContext.Provider value={valore}>
       {children}
       {pronto && aperto && <Banner onScelta={salva} />}
     </ConsensoContext.Provider>
