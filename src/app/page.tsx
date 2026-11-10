@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Illustrazione, Pennellata } from "@/components/Blocchi";
+import { JsonLd } from "@/components/JsonLd";
 import { Pulsante } from "@/components/Pulsante";
 import { Ruvido } from "@/components/Ruvido";
 import { SchedaArticolo, SchedaDocumentario } from "@/components/Schede";
@@ -7,7 +8,7 @@ import { LinkTesto, Sezione, TestaSezione } from "@/components/Sezione";
 import { Social } from "@/components/Social";
 import { Intro, TitoloDisplay, TitoloSezione } from "@/components/Testo";
 import { getArticoli, getDocumentari } from "@/lib/content";
-import { metaPagina } from "@/lib/seo";
+import { assoluto, metaPagina } from "@/lib/seo";
 import { site } from "@/lib/site";
 import { testi } from "@/lib/testi";
 import s from "./page.module.css";
@@ -22,8 +23,32 @@ export default async function Home() {
   const t = testi.home;
   const toniArticolo = ["kraft", "lilla", "kraft"] as const;
 
+  // Il progetto è di Promotergroup: l'organizzazione è dichiarata una volta sola e richiamata dal sito
+  const dati = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": assoluto("/#organizzazione"),
+      name: site.nome,
+      url: assoluto("/"),
+      email: site.titolare.email,
+      parentOrganization: { "@type": "Organization", name: site.titolare.ragioneSociale },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": assoluto("/#sito"),
+      name: site.titoloCompleto,
+      url: assoluto("/"),
+      inLanguage: "it",
+      description: site.descrizione,
+      publisher: { "@id": assoluto("/#organizzazione") },
+    },
+  ];
+
   return (
     <>
+      <JsonLd dati={dati} />
       <section className={`${s.hero} superficie-verde carta`}>
         <div className={`contenitore ${s.heroGriglia}`}>
           <div>
