@@ -36,8 +36,7 @@ export const site = {
       "Progetto cofinanziato dalla Regione Siciliana – Assessorato per le Attività Produttive – Iniziativa “Sicilia che piace 2026” – Capitolo di Bilancio 342525",
     // TODO obbligatorio prima della pubblicazione
     cup: null as string | null,
-    // TODO: inserire /public/logo/regione-siciliana.svg e indicarne qui il percorso
-    logoRegione: null as string | null,
+    logoRegione: "/logo/regione-siciliana.svg" as string | null,
   },
 } as const;
 

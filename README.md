@@ -109,7 +109,7 @@ VideoObject) nel CMS. Le copertine vanno servite dal sito, non da `i.ytimg.com`.
 ## Checklist pre-lancio
 
 - [ ] **CUP** del progetto: `site.cofinanziamento.cup` in `src/lib/site.ts` (obbligatorio, ora il footer mostra "[da inserire]").
-- [ ] **Logo Regione Siciliana** nel footer: salva `public/logo/regione-siciliana.svg` e indica il percorso in `site.cofinanziamento.logoRegione`.
+- [ ] **Logo Regione Siciliana** nel footer: oggi è `public/logo/regione-siciliana.svg`, copiato da un altro progetto. Farlo confermare dal cliente o dalla Regione (versione ufficiale e regole d’uso).
 - [ ] **URL reali dei social** in `site.social` (ora sono le home dei portali).
 - [ ] **Testi legali**: `privacy` e `cookie` sono bozze; farli validare dal legale e togliere `<NotaBozza />`. Completare tempi di conservazione e fornitore email.
 - [ ] **Servizio email** collegato e provato con un invio reale.

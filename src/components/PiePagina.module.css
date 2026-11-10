@@ -34,9 +34,15 @@
   line-height: 1.2;
   text-align: center;
 }
-.logoEnte {
+.targa {
   flex: none;
-  width: 64px;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-s);
+  background: var(--bone);
+  line-height: 0;
+}
+.logoEnte {
+  width: 140px;
   height: auto;
 }
 .basso {
