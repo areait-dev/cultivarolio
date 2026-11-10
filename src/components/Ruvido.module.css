@@ -1,0 +1,46 @@
+.ruvido {
+  --_forma: var(--forma-pannello);
+  position: relative;
+  isolation: isolate;
+  /* la superficie è disegnata dalla maschera, non dal background */
+  background-color: transparent !important;
+}
+.ruvido::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--superficie);
+  -webkit-mask: var(--_forma) center / 100% 100% no-repeat;
+  mask: var(--_forma) center / 100% 100% no-repeat;
+}
+
+.scheda {
+  --_forma: var(--forma-scheda);
+}
+.striscia {
+  --_forma: var(--forma-striscia);
+}
+.pannello {
+  --_forma: var(--forma-pannello);
+}
+/* Cornice: solo il contorno, nel colore del testo */
+.cornice {
+  --_forma: var(--forma-cornice);
+}
+.cornice::before {
+  background: currentColor;
+}
+
+.riquadro {
+  padding: var(--space-6);
+}
+.striscia.riquadro {
+  padding: var(--space-5) var(--space-6);
+}
+
+@media (max-width: 760px) {
+  .riquadro {
+    padding: var(--space-5);
+  }
+}

@@ -1,0 +1,41 @@
+.banner {
+  position: fixed;
+  z-index: var(--z-banner);
+  left: var(--space-4);
+  right: var(--space-4);
+  bottom: var(--space-4);
+  max-width: 56rem;
+  margin-inline: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-5) var(--space-6);
+  border-radius: var(--radius-m);
+  box-shadow: 0 12px 40px -12px rgb(0 0 0 / 0.5);
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+}
+.testo {
+  flex: 1 1 28rem;
+}
+.titolo {
+  font: var(--peso-semibold) var(--fs-base) / 1.3 var(--famiglia-sans);
+  margin-bottom: var(--space-1);
+}
+.link {
+  font-weight: var(--peso-semibold);
+  text-underline-offset: 3px;
+}
+.azioni {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.riapri {
+  padding: 0;
+  border: 0;
+  background: none;
+  text-decoration: underline;
+  cursor: pointer;
+}

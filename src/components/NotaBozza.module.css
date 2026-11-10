@@ -1,0 +1,4 @@
+.nota {
+  max-width: var(--misura-lettura);
+  margin: 0 auto var(--space-7);
+}

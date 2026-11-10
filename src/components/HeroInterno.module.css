@@ -1,0 +1,47 @@
+.hero {
+  position: relative;
+  overflow: clip;
+  padding: var(--space-9) 0 var(--space-8);
+}
+.occhiello {
+  font: var(--peso-semibold) var(--fs-xs) / 1.3 var(--famiglia-sans);
+}
+.occhiello a {
+  text-underline-offset: 3px;
+}
+.titolo {
+  max-width: 16ch;
+  margin: var(--space-2) 0 var(--space-4);
+}
+.intro {
+  font-size: var(--fs-lg);
+  line-height: 1.6;
+  max-width: var(--misura-testo);
+  text-wrap: pretty;
+}
+.extra {
+  margin-top: var(--space-6);
+}
+.deco {
+  position: absolute;
+  right: 4%;
+  bottom: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 960px) {
+  .hero {
+    padding: var(--space-8) 0 var(--space-7);
+  }
+  .deco {
+    opacity: 0.35;
+    right: -4%;
+    transform: scale(0.6);
+    transform-origin: bottom right;
+  }
+}
+@media (max-width: 760px) {
+  .deco {
+    display: none;
+  }
+}

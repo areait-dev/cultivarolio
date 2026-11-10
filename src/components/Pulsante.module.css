@@ -1,0 +1,88 @@
+.pulsante {
+  --_forma: var(--forma-scheda);
+  --_fill: var(--verde-oliva);
+  --_fill-hover: var(--verde-scuro);
+  --_testo: var(--bone);
+
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  min-height: 52px;
+  padding: 0 var(--space-6);
+  border: 0;
+  background: none;
+  color: var(--_testo);
+  font: var(--peso-semibold) 0.9375rem / 1.2 var(--famiglia-sans);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform var(--durata-rapida) var(--easing);
+}
+.pulsante::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--_fill);
+  -webkit-mask: var(--_forma) center / 100% 100% no-repeat;
+  mask: var(--_forma) center / 100% 100% no-repeat;
+  transition: background-color var(--durata-rapida) var(--easing);
+}
+.pulsante:hover {
+  transform: translateY(-1px) rotate(-0.4deg);
+}
+.pulsante:hover::before {
+  background: var(--_fill-hover);
+}
+.pulsante:active {
+  transform: translateY(1px);
+}
+.pulsante:disabled,
+.pulsante[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.primario {
+  /* valori di default */
+}
+.chiaro {
+  --_fill: var(--bone);
+  --_fill-hover: var(--kraft);
+  --_testo: var(--carbone);
+}
+.lilla {
+  --_fill: var(--lilla);
+  --_fill-hover: #b596bb;
+  --_testo: var(--carbone);
+}
+/* Secondario: solo contorno ruvido, nel colore del testo della sezione */
+.secondario {
+  --_forma: var(--forma-cornice);
+  --_fill: currentColor;
+  --_fill-hover: currentColor;
+  --_testo: var(--testo);
+}
+
+.piccolo {
+  min-height: 44px; /* resta un bersaglio touch valido */
+  padding: 0 var(--space-5);
+  font-size: var(--fs-sm);
+}
+
+.icona {
+  width: 20px;
+  height: 20px;
+  flex: none;
+}
+
+@media (max-width: 760px) {
+  .pulsante {
+    white-space: normal;
+    text-align: center;
+  }
+}

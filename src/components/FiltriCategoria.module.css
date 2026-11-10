@@ -1,0 +1,24 @@
+.filtri {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.filtro {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 var(--space-4);
+  border: var(--bordo-sottile) solid var(--bordo);
+  border-radius: var(--radius-tondo);
+  font: var(--peso-medio) var(--fs-sm) / 1 var(--famiglia-sans);
+  text-decoration: none;
+  transition: background-color var(--durata-rapida) var(--easing);
+}
+.filtro:hover {
+  background: var(--superficie-rialzata);
+}
+.filtro[aria-current="page"] {
+  background: var(--verde-oliva);
+  border-color: var(--verde-oliva);
+  color: var(--bone);
+}

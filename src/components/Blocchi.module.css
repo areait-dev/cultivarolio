@@ -1,0 +1,80 @@
+/* Numero */
+.numero {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+.cifra {
+  font: var(--peso-normale) var(--fs-5xl) / 0.85 var(--famiglia-display);
+}
+.numeroTitolo {
+  font: var(--peso-normale) var(--fs-2xl) / 1 var(--famiglia-display);
+  text-transform: lowercase;
+  margin: 6px 0;
+}
+.numeroTesto {
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+  max-width: 26ch;
+}
+
+/* Obiettivo */
+.verbo {
+  display: grid;
+  gap: 2px;
+  font: var(--peso-normale) var(--fs-2xl) / 1 var(--famiglia-display);
+  text-transform: lowercase;
+  margin-bottom: var(--space-2);
+}
+.oggetto {
+  font-size: var(--fs-lg);
+  line-height: 1.1;
+}
+.obiettivoTesto {
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  max-width: 60ch;
+}
+
+/* Territorio */
+.territorio {
+  border-top: var(--bordo-sottile) solid currentColor;
+  padding-top: var(--space-3);
+}
+.luogo {
+  font-size: 0.9375rem;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+.territorioNome {
+  font: var(--peso-normale) var(--fs-xl) / 1.05 var(--famiglia-display);
+  text-transform: lowercase;
+}
+
+/* Tratto */
+.tratto {
+  display: block;
+  width: 100%;
+  height: 12px;
+  margin: 0;
+  border: 0;
+  background: currentColor;
+  -webkit-mask: var(--forma-tratto) center / 100% 100% no-repeat;
+  mask: var(--forma-tratto) center / 100% 100% no-repeat;
+}
+
+/* Pennellata */
+.pennellata {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+}
+.pennellata::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 12% -6% 8% -6%; /* era right:-14%: sbordava e creava scroll orizzontale su mobile */
+  background: var(--lilla);
+  -webkit-mask: var(--forma-pennellata) center / 100% 100% no-repeat;
+  mask: var(--forma-pennellata) center / 100% 100% no-repeat;
+}

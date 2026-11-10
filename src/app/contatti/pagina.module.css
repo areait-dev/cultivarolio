@@ -1,0 +1,28 @@
+.griglia {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: var(--space-8);
+  align-items: start;
+}
+.recapiti {
+  display: grid;
+  gap: var(--space-4);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+.recapiti strong {
+  display: block;
+  font-size: var(--fs-2xs);
+}
+.recapiti a {
+  display: inline-block;
+  padding-block: 4px;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 960px) {
+  .griglia {
+    grid-template-columns: 1fr;
+    gap: var(--space-7);
+  }
+}

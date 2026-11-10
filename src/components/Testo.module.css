@@ -1,0 +1,54 @@
+.occhiello {
+  font: var(--peso-medio) var(--fs-sm) / var(--lh-ui) var(--famiglia-sans);
+  color: var(--testo-tenue);
+}
+
+.titoloSezione {
+  font: var(--peso-normale) var(--fs-3xl) / 1.05 var(--famiglia-display);
+  text-transform: lowercase;
+  text-wrap: balance;
+}
+
+.display {
+  font-family: var(--famiglia-display);
+  font-weight: var(--peso-normale);
+  line-height: var(--lh-stretta);
+  text-transform: lowercase;
+  text-wrap: balance;
+}
+.naturale {
+  text-transform: none;
+}
+.display_s {
+  font-size: var(--fs-xl);
+  line-height: 1.05;
+}
+.display_m {
+  font-size: var(--fs-2xl);
+  line-height: 1.05;
+}
+.display_l {
+  font-size: var(--fs-3xl);
+}
+.display_xl {
+  font-size: var(--fs-4xl);
+}
+
+.intro {
+  font-size: var(--fs-md);
+  line-height: var(--lh-testo);
+  max-width: var(--misura-testo);
+  text-wrap: pretty;
+}
+.introGrande {
+  font-size: var(--fs-lg);
+}
+
+.tenue {
+  color: var(--testo-tenue);
+}
+
+.meta {
+  font: var(--peso-semibold) var(--fs-xs) / 1.4 var(--famiglia-sans);
+  color: var(--testo-tenue);
+}

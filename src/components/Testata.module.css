@@ -1,0 +1,124 @@
+.testata[class] {
+  /* [class] alza la specificità sopra .carta (position: relative) */
+  position: sticky;
+  top: 0;
+  z-index: var(--z-testata);
+}
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  max-width: calc(var(--contenitore) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding: var(--space-4) var(--gutter);
+}
+.logo {
+  display: block;
+  flex: none;
+}
+.logo img {
+  height: 40px;
+  width: auto;
+}
+.menu {
+  display: flex;
+  gap: var(--space-6);
+}
+.voce {
+  display: inline-block;
+  padding: 6px 0;
+  font: var(--peso-medio) 0.9375rem / 1.2 var(--famiglia-sans);
+  text-decoration: none;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
+}
+.voce:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--lilla);
+}
+.voce[aria-current="page"] {
+  font-weight: var(--peso-semibold);
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+}
+.burger {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: 2px solid currentColor;
+  border-radius: var(--radius-s);
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}
+.linee,
+.linee::before,
+.linee::after {
+  display: block;
+  width: 20px;
+  height: 2px;
+  margin-inline: auto;
+  background: currentColor;
+  transition: transform var(--durata-media) var(--easing), opacity var(--durata-media) var(--easing);
+}
+.linee {
+  position: relative;
+}
+.linee::before,
+.linee::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+.linee::before {
+  top: -6px;
+}
+.linee::after {
+  top: 6px;
+}
+.burger[aria-expanded="true"] .linee {
+  background: transparent;
+}
+.burger[aria-expanded="true"] .linee::before {
+  transform: translateY(6px) rotate(45deg);
+}
+.burger[aria-expanded="true"] .linee::after {
+  transform: translateY(-6px) rotate(-45deg);
+}
+.ctaMobile {
+  display: none;
+}
+
+@media (max-width: 860px) {
+  .nav {
+    flex-wrap: wrap;
+    gap: var(--space-4);
+  }
+  .burger {
+    display: block;
+  }
+  .cta {
+    display: none !important;
+  }
+  .menu {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    gap: 0;
+    padding-bottom: var(--space-4);
+  }
+  .menu.aperto {
+    display: flex;
+  }
+  .voce {
+    display: block;
+    padding: 14px 0;
+    border-top: 1px solid var(--bordo-tenue);
+    font-size: var(--fs-md);
+  }
+  .ctaMobile {
+    display: block;
+    padding-top: var(--space-4);
+  }
+}

@@ -1,0 +1,43 @@
+.centro {
+  display: grid;
+  justify-items: center;
+}
+.inAlto {
+  align-items: start;
+}
+.allunga {
+  align-items: stretch;
+}
+.titoloBlocco {
+  margin-bottom: var(--space-7);
+}
+.obiettivi {
+  display: grid;
+  gap: var(--space-6);
+}
+.storia {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+}
+.storia p {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+.introTerritori {
+  margin-block: var(--space-4) var(--space-7);
+}
+.ospitalita {
+  max-width: var(--misura-testo);
+  margin-top: var(--space-7);
+  font-size: 0.9375rem;
+}
+.colonna {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+.consorzio {
+  font-size: var(--fs-md);
+  line-height: var(--lh-testo);
+}

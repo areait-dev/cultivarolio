@@ -1,0 +1,171 @@
+/* ==========================================================================
+   Cultivar — Design token
+   Tre livelli:
+   1. Primitivi   → i colori e le misure "grezzi" del marchio. Non usarli nei componenti.
+   2. Semantici   → ruoli (superficie, testo, focus…). I componenti usano solo questi.
+   3. Superfici   → classi .superficie-* che ridefiniscono i semantici per sezione.
+   ========================================================================== */
+
+:root {
+  /* ---------- 1. Primitivi: colore ---------- */
+  --verde-oliva: #3b5436;
+  --verde-scuro: #2e4329;
+  --bone: #e5ddd0;
+  --bone-chiaro: #eee8de;
+  --kraft: #d8ccb6;
+  --carbone: #2f352b;
+  --lilla: #c4abc9;
+  --blu-baltico: #416788;
+  --inchiostro-tenue: #4a5145;  /* era #545B4E: su kraft dava 4.44:1, ora 5.18:1 */
+  --bone-tenue: #d3cbbe;        /* testo secondario su fondi scuri (≥5.2:1) */
+  --rosso-errore: #8c3b2e;
+  --rosso-errore-chiaro: #f0b4a8; /* errore su fondi scuri */
+
+  /* Palette illustrazioni (solo grafica, mai testo) */
+  --illustrazione-salvia: #6f8676;
+  --illustrazione-prugna: #311f4e;
+  --illustrazione-ramo: #88805c;
+
+  /* ---------- Tipografia ---------- */
+  /* --font-display / --font-sans arrivano da next/font (vedi src/app/fonts.ts).
+     I valori qui sotto sono il ripiego se il font non è ancora caricato. */
+  --famiglia-display: var(--font-display, "BD Plakatt Cultivar"), system-ui, sans-serif;
+  --famiglia-sans: var(--font-sans, Poppins), system-ui, sans-serif;
+
+  /* Scala fluida: min a 360px, max a 1280px di viewport */
+  --fs-2xs: 0.75rem;                                        /* 12 */
+  --fs-xs: 0.8125rem;                                       /* 13 occhielli, meta */
+  --fs-sm: 0.875rem;                                        /* 14 */
+  --fs-base: 1rem;                                          /* 16 testo */
+  --fs-md: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);         /* 16→18 intro, articolo */
+  --fs-lg: clamp(1.125rem, 1.05rem + 0.35vw, 1.25rem);      /* 18→20 lead */
+  --fs-xl: clamp(1.375rem, 1.2rem + 0.75vw, 1.75rem);       /* 22→28 titoli scheda, sezione */
+  --fs-2xl: clamp(1.625rem, 1.35rem + 1.2vw, 2.25rem);      /* 26→36 */
+  --fs-3xl: clamp(2rem, 1.6rem + 1.8vw, 2.875rem);          /* 32→46 titoli display */
+  --fs-4xl: clamp(2.375rem, 1.8rem + 2.6vw, 4rem);          /* 38→64 hero interni */
+  --fs-5xl: clamp(4.5rem, 3.4rem + 4.8vw, 7.5rem);          /* 72→120 cifre */
+
+  --lh-stretta: 1;
+  --lh-titolo: 1.1;
+  --lh-ui: 1.3;
+  --lh-testo: 1.65;
+  --lh-lettura: 1.75;
+
+  --peso-normale: 400;
+  --peso-medio: 500;
+  --peso-semibold: 600;
+  --peso-bold: 700;
+
+  --tracking-maiuscolo: 0.08em;
+  --tracking-meta: 0.06em;
+
+  /* ---------- Spaziatura (base 4) ---------- */
+  --space-1: 0.25rem;  /* 4 */
+  --space-2: 0.5rem;   /* 8 */
+  --space-3: 0.75rem;  /* 12 */
+  --space-4: 1rem;     /* 16 */
+  --space-5: 1.5rem;   /* 24 */
+  --space-6: 2rem;     /* 32 */
+  --space-7: 3rem;     /* 48 */
+  --space-8: 4rem;     /* 64 */
+  --space-9: 6rem;     /* 96 */
+  --space-10: 8rem;    /* 128 */
+
+  /* Spaziatura fluida per sezioni e margini laterali */
+  --sezione-y: clamp(var(--space-8), 5vw + 2rem, var(--space-9));
+  --sezione-y-stretta: clamp(var(--space-7), 3vw + 2rem, var(--space-8));
+  --gutter: clamp(var(--space-5), 4vw, var(--space-8));
+  --gap-griglia: clamp(var(--space-5), 2.5vw, var(--space-6));
+
+  /* ---------- Layout ---------- */
+  --contenitore: 75rem;        /* 1200 */
+  --contenitore-stretto: 53.75rem; /* 860 */
+  --misura-testo: 62ch;
+  --misura-lettura: 68ch;
+  /* Breakpoint (solo riferimento: le media query CSS non leggono variabili)
+     --bp-mobile: 760px;  --bp-tablet: 960px; */
+
+  /* ---------- Forme ---------- */
+  --radius-s: 4px;
+  --radius-m: 12px;
+  --radius-tondo: 999px;
+  --bordo-sottile: 1.5px;
+  --bordo-spesso: 2.5px;
+  --ombra-carta: 0 1px 0 rgb(47 53 43 / 0.08), 0 10px 24px -14px rgb(47 53 43 / 0.45);
+
+  /* Maschere "ruvide" estratte dalla presentazione */
+  --forma-striscia: url("/forme/striscia.svg");
+  --forma-scheda: url("/forme/scheda.svg");
+  --forma-pannello: url("/forme/pannello.svg");
+  --forma-cornice: url("/forme/cornice.svg");
+  --forma-tratto: url("/forme/tratto.svg");
+  --forma-tratto-v: url("/forme/tratto-v.svg");
+  --forma-pennellata: url("/forme/pennellata.svg");
+  --texture-grana: url("/forme/grana.svg");
+  --texture-fibre: url("/forme/fibre.svg");
+  --texture-pattern: url("/forme/pattern.svg");
+
+  /* ---------- Movimento ---------- */
+  --durata-rapida: 150ms;
+  --durata-media: 250ms;
+  --easing: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  /* ---------- Livelli ---------- */
+  --z-base: 0;
+  --z-sopra: 1;
+  --z-testata: 20;
+  --z-banner: 40;
+  --z-skip: 50;
+
+  /* ---------- 2. Semantici (valori per la superficie chiara di default) ---------- */
+  --superficie: var(--bone);
+  --superficie-rialzata: var(--bone-chiaro);
+  --testo: var(--carbone);
+  --testo-tenue: var(--inchiostro-tenue);
+  --bordo: var(--carbone);
+  --bordo-tenue: rgb(47 53 43 / 0.25);
+  --focus: var(--blu-baltico);           /* 4.4:1 su bone, 3.8:1 su kraft */
+  --errore: var(--rosso-errore);
+  --accento: var(--lilla);
+  --link-hover: var(--verde-oliva);
+  --texture-blend: multiply;
+  --texture-opacita: 0.32;
+}
+
+/* ---------- 3. Superfici ---------- */
+.superficie-bone {
+  --superficie: var(--bone);
+}
+.superficie-kraft {
+  --superficie: var(--kraft);
+}
+.superficie-lilla {
+  --superficie: var(--lilla);
+  --testo-tenue: var(--carbone); /* il tenue su lilla non regge il contrasto */
+  --focus: var(--carbone);       /* il blu baltico su lilla dà solo 2.85:1; il carbone 6.0:1 */
+}
+.superficie-verde,
+.superficie-carbone {
+  --testo: var(--bone);
+  --testo-tenue: var(--bone-tenue);
+  --bordo: var(--bone);
+  --bordo-tenue: rgb(229 221 208 / 0.35);
+  --focus: var(--lilla);                 /* 4.0:1 su verde, 6.0:1 su carbone (era 1.4:1) */
+  --errore: var(--rosso-errore-chiaro);
+  --link-hover: var(--lilla);
+  --texture-blend: soft-light;
+  --texture-opacita: 0.55;
+}
+.superficie-verde {
+  --superficie: var(--verde-oliva);
+}
+.superficie-carbone {
+  --superficie: var(--carbone);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --durata-rapida: 0ms;
+    --durata-media: 0ms;
+  }
+}

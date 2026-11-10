@@ -1,0 +1,116 @@
+.video {
+  --testo: var(--bone);
+  --focus: var(--lilla);
+  position: relative;
+  aspect-ratio: 16 / 9;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: var(--radius-m);
+  background: var(--carbone);
+  color: var(--bone);
+}
+.copertina {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.illustrazione {
+  position: absolute;
+  inset: 12% 30%;
+  width: 40%;
+  height: 76%;
+  object-fit: contain;
+  opacity: 0.18;
+  filter: invert(1);
+}
+.play {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 0;
+  background: none;
+  color: inherit;
+  font: var(--peso-semibold) var(--fs-xs) / 1.3 var(--famiglia-sans);
+  cursor: pointer;
+}
+.play::after {
+  /* tutta la superficie del video è cliccabile */
+  content: "";
+  position: absolute;
+  inset: -100vmax;
+}
+.cerchio {
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  border: 3px solid currentColor;
+  border-radius: var(--radius-tondo);
+  background: rgb(47 53 43 / 0.35);
+  transition: transform var(--durata-rapida) var(--easing);
+}
+.play:hover .cerchio {
+  transform: scale(1.06);
+}
+.durata {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  padding: 4px 10px;
+  border-radius: var(--radius-s);
+  background: var(--carbone);
+  font: var(--peso-semibold) var(--fs-xs) / 1.2 var(--famiglia-sans);
+}
+.etichetta {
+  position: relative;
+  font: var(--peso-semibold) var(--fs-xs) / 1.3 var(--famiglia-sans);
+}
+.iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.conferma {
+  padding: var(--space-5);
+  text-align: center;
+  align-content: center;
+  gap: var(--space-4);
+  font-size: var(--fs-sm);
+}
+.scelte {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-3);
+}
+.bottone,
+.bottoneSecondario {
+  min-height: 44px;
+  padding: 0 var(--space-5);
+  border-radius: var(--radius-tondo);
+  font-weight: var(--peso-semibold);
+  font-size: var(--fs-sm);
+  cursor: pointer;
+}
+.bottone {
+  border: 2px solid var(--bone);
+  background: var(--bone);
+  color: var(--carbone);
+}
+.bottoneSecondario {
+  border: 2px solid var(--bone);
+  background: none;
+  color: var(--bone);
+}
+.link {
+  font-weight: var(--peso-semibold);
+  text-underline-offset: 3px;
+}

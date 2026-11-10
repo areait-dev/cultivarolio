@@ -1,0 +1,78 @@
+.footer {
+  padding: var(--space-8) 0 var(--space-6);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+}
+.alto {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: var(--space-8);
+  align-items: start;
+}
+.logo {
+  height: 48px;
+  width: auto;
+  margin-bottom: var(--space-4);
+}
+.descrizione {
+  max-width: 48ch;
+  margin-bottom: var(--space-4);
+}
+.ente {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+.slot {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 72px;
+  border: var(--bordo-sottile) dashed currentColor;
+  font-size: var(--fs-2xs);
+  line-height: 1.2;
+  text-align: center;
+}
+.logoEnte {
+  flex: none;
+  width: 64px;
+  height: auto;
+}
+.basso {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--bordo-tenue);
+}
+.legali {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+}
+.legali a,
+.legali button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px; /* bersaglio touch */
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 960px) {
+  .alto {
+    grid-template-columns: 1fr;
+    gap: var(--space-7);
+  }
+}
+@media (max-width: 760px) {
+  .footer {
+    padding-top: var(--space-7);
+  }
+  .ente {
+    align-items: flex-start;
+  }
+}
+

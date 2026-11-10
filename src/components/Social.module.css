@@ -1,0 +1,18 @@
+.social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.voce {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 2px solid currentColor;
+  border-radius: var(--radius-tondo);
+  transition: background-color var(--durata-rapida) var(--easing), color var(--durata-rapida) var(--easing);
+}
+.voce:hover {
+  background: var(--testo);
+  color: var(--superficie);
+}

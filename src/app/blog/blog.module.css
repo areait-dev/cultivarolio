@@ -1,0 +1,35 @@
+section.elenco,
+section.corpoArticolo {
+  padding-top: var(--space-7); /* section.: specificità sopra .sezione di base.css */
+}
+.titolo {
+  margin-bottom: var(--space-5);
+}
+.filtri {
+  margin-bottom: var(--space-7);
+}
+
+.articolo {
+  max-width: var(--misura-lettura);
+  margin-inline: auto;
+}
+.piede {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  max-width: var(--misura-lettura);
+  margin: var(--space-7) auto 0;
+}
+.chiusura {
+  display: grid;
+  justify-items: center;
+  margin-top: var(--space-8);
+}
+.meta {
+  margin-top: var(--space-3);
+}
+.occhiello a {
+  font-weight: var(--peso-semibold);
+}
