@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { site } from "@/lib/site";
 import s from "./pagina.module.css";
 
 export const metadata: Metadata = {
@@ -7,25 +6,21 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
+// Il testo è dentro le immagini (public/in-costruzione-*.png): per cambiarlo si sostituiscono i due file.
 export default function InCostruzione() {
   return (
-    <section className={`${s.pagina} superficie-verde carta`}>
-      <div className={s.contenuto}>
+    <div className={s.pagina}>
+      <h1 className="sr-only">Cultivar – il sito è in costruzione</h1>
+      <picture>
+        <source media="(orientation: portrait)" srcSet="/in-costruzione-mobile.png" />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          className={s.logo}
-          src="/logo/cultivar-payoff-bone.png"
-          alt="Cultivar. Storie di olio d’oliva IGP di Sicilia"
-          width={520}
-          height={177}
+          className={s.immagine}
+          src="/in-costruzione-desktop.png"
+          alt="Cultivar, storie di olio d’oliva IGP di Sicilia. Il sito è in costruzione. Per informazioni: comunicazione@promotergroup.eu"
           fetchPriority="high"
         />
-        <h1 className={s.titolo}>Il sito è in costruzione</h1>
-        <p className={s.testo}>Stiamo preparando il racconto dell’olio IGP di Sicilia. Torna a trovarci presto.</p>
-        <p className={s.contatto}>
-          Per informazioni: <a href={`mailto:${site.titolare.email}`}>{site.titolare.email}</a>
-        </p>
-      </div>
-    </section>
+      </picture>
+    </div>
   );
 }
