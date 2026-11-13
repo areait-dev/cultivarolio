@@ -16,6 +16,14 @@
 .prosa h2 + * {
   margin-top: var(--space-3);
 }
+.prosa h3 {
+  margin-top: var(--space-6);
+  font: var(--peso-semibold) var(--fs-lg) / 1.2 var(--famiglia-sans);
+  text-wrap: balance;
+}
+.prosa h3 + * {
+  margin-top: var(--space-2);
+}
 .prosa ul,
 .prosa ol {
   padding-left: 1.2em;

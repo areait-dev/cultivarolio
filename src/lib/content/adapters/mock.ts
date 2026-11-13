@@ -1,3 +1,4 @@
+import { corpo28Cultivar } from "./articolo-28-cultivar";
 import type { Articolo, Categoria, ContentSource, Documentario } from "../types";
 
 /**
@@ -13,127 +14,49 @@ const categorie: Categoria[] = [
 ];
 const cat = (slug: string) => categorie.find((c) => c.slug === slug)!;
 
-const corpoEsempio = [
-  {
-    tipo: "paragrafo" as const,
-    testo:
-      "Testo segnaposto per mostrare la tipografia dell’articolo. Denominazione, campagna olearia, origine delle olive: sull’etichetta di un Olio Extra Vergine di Oliva Sicilia IGP ci sono le informazioni che servono per scegliere con consapevolezza.",
-  },
-  { tipo: "titolo" as const, testo: "La denominazione" },
-  {
-    tipo: "paragrafo" as const,
-    testo:
-      "Paragrafo d’esempio. Il testo corrente è in Poppins con interlinea ampia; i sottotitoli usano il carattere display in minuscolo.",
-  },
-  { tipo: "citazione" as const, testo: "Un prodotto si capisce davvero quando se ne conosce la storia." },
-  { tipo: "titolo" as const, testo: "Cosa cercare" },
-  {
-    tipo: "elenco" as const,
-    voci: [
-      "La dicitura “Sicilia IGP” e il logo europeo",
-      "L’annata o la campagna di raccolta",
-      "Il nome del produttore e il luogo di confezionamento",
-    ],
-  },
-];
-
 const articoli: Articolo[] = [
   {
-    slug: "come-si-legge-l-etichetta-di-un-olio-igp",
-    titolo: "Come si legge l’etichetta di un olio IGP",
-    estratto: "Denominazione, campagna olearia, origine: cosa cercare prima di acquistare.",
+    slug: "le-28-cultivar-dell-olio-evo-sicilia-igp",
+    titolo: "Le 28 cultivar dell’Olio EVO Sicilia IGP: viaggio tra varietà e territori",
+    estratto:
+      "Biancolilla, Cerasuola, Nocellara del Belice, Tonda Iblea: le 28 cultivar del disciplinare e i territori che raccontano.",
     categoria: cat("conoscere-l-olio"),
-    data: "2026-11-12",
-    minutiLettura: 5,
-    illustrazione: "/illustrazioni/foglie-carbone.svg",
-    corpo: corpoEsempio,
-  },
-  {
-    slug: "dalla-raccolta-alla-molitura-in-24-ore",
-    titolo: "Dalla raccolta alla molitura in 24 ore",
-    estratto: "Perché i tempi tra campagna e frantoio cambiano il profilo dell’olio.",
-    categoria: cat("filiera"),
-    data: "2026-11-05",
-    minutiLettura: 4,
-    illustrazione: "/illustrazioni/coppia-olive-carbone.svg",
-    corpo: corpoEsempio,
-  },
-  {
-    slug: "fruttato-amaro-piccante",
-    titolo: "Fruttato, amaro, piccante",
-    estratto: "I tre attributi positivi e come riconoscerli all’assaggio.",
-    categoria: cat("degustazione"),
-    data: "2026-10-28",
+    data: "2026-11-13",
     minutiLettura: 6,
-    illustrazione: "/illustrazioni/oliva-colore.svg",
-    corpo: corpoEsempio,
-  },
-  {
-    slug: "tre-province-una-stessa-cultura-dell-olio",
-    titolo: "Tre province, una stessa cultura dell’olio",
-    estratto: "Ragusa, Catania e Trapani: paesaggi diversi lungo il viaggio di Cultivar.",
-    categoria: cat("territori"),
-    data: "2026-10-20",
-    minutiLettura: 5,
-    illustrazione: "/illustrazioni/ramo-lungo-colore.svg",
-    corpo: corpoEsempio,
-  },
-  {
-    slug: "il-frantoio-che-recupera-i-sottoprodotti",
-    titolo: "Il frantoio che recupera i sottoprodotti",
-    estratto: "Sanse, acque di vegetazione e noccioli: dall’impatto ambientale all’economia circolare.",
-    categoria: cat("filiera"),
-    data: "2026-10-14",
-    minutiLettura: 7,
-    illustrazione: "/illustrazioni/rametto-colore.svg",
-    corpo: corpoEsempio,
-  },
-  {
-    slug: "cosa-significa-igp",
-    titolo: "Cosa significa IGP",
-    estratto: "Indicazione Geografica Protetta: regole, controlli e ruolo del Consorzio di Tutela.",
-    categoria: cat("conoscere-l-olio"),
-    data: "2026-10-07",
-    minutiLettura: 4,
-    illustrazione: "/illustrazioni/alloro-carbone.svg",
-    corpo: corpoEsempio,
+    illustrazione: "/illustrazioni/foglie-carbone.svg",
+    corpo: corpo28Cultivar,
   },
 ];
 
+/** Episodi in lavorazione: niente titoli, durate o descrizioni inventati finché i video non sono pronti. */
 const documentari: Documentario[] = [
   {
     numero: 1,
-    slug: "il-tempo-della-raccolta",
-    titolo: "Il tempo della raccolta",
+    slug: "chiaramonte-gulfi",
+    titolo: "Chiaramonte Gulfi",
     luogo: "Chiaramonte Gulfi (RG)",
     partner: "Frantoi Cutrera srl",
-    durata: "18:40",
-    descrizione:
-      "Nelle campagne iblee, dalla raccolta alla molitura: le voci di chi custodisce la tradizione olearia del territorio.",
+    descrizione: "Episodio in lavorazione, in collaborazione con Frantoi Cutrera srl.",
     illustrazione: "/illustrazioni/grappolo-carbone.svg",
     segnaposto: true,
   },
   {
     numero: 2,
-    slug: "il-gusto-del-calatino",
-    titolo: "Il gusto del Calatino",
+    slug: "mirabella-imbaccari",
+    titolo: "Mirabella Imbaccari",
     luogo: "Mirabella Imbaccari (CT)",
     partner: "Frantoi Beretta",
-    durata: "16:20",
-    descrizione:
-      "Assaggio, controlli di qualità e riconoscibilità dell’Olio EVO Sicilia IGP raccontati da chi lo produce.",
+    descrizione: "Episodio in lavorazione, in collaborazione con Frantoi Beretta.",
     illustrazione: "/illustrazioni/ramo-olive-carbone.svg",
     segnaposto: true,
   },
   {
     numero: 3,
-    slug: "la-valle-del-belice",
-    titolo: "La Valle del Belice",
+    slug: "partanna",
+    titolo: "Partanna",
     luogo: "Partanna (TP)",
     partner: "Olivoil srl – Oleificio Geraci",
-    durata: "19:05",
-    descrizione:
-      "Innovazione, efficienza energetica e recupero dei residui di molitura in una filiera che guarda all’economia circolare.",
+    descrizione: "Episodio in lavorazione, in collaborazione con Olivoil srl – Oleificio Geraci.",
     illustrazione: "/illustrazioni/ramo-colore.svg",
     segnaposto: true,
   },

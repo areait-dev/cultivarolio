@@ -19,6 +19,7 @@ export type Categoria = {
 export type Blocco =
   | { tipo: "paragrafo"; testo: string }
   | { tipo: "titolo"; testo: string }
+  | { tipo: "sottotitolo"; testo: string }
   | { tipo: "citazione"; testo: string; fonte?: string }
   | { tipo: "elenco"; voci: string[]; ordinato?: boolean }
   | { tipo: "immagine"; immagine: Immagine; didascalia?: string };
@@ -46,7 +47,8 @@ export type Documentario = {
   titolo: string;
   luogo: string; // "Chiaramonte Gulfi (RG)"
   partner: string; // "Frantoi Cutrera srl"
-  durata: string; // "18:40"
+  /** "18:40"; assente finché il video non è pronto */
+  durata?: string;
   descrizione: string;
   /** ID del video YouTube; se assente il video è "in arrivo" */
   youtubeId?: string;

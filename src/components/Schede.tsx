@@ -17,7 +17,7 @@ export function SchedaDocumentario({ doc, livello = 3 }: { doc: Documentario; li
         <span className={s.play}>
           <IconaPlay width={28} height={28} />
         </span>
-        <span className={s.durata}>{doc.durata}</span>
+        <span className={s.durata}>{doc.durata ?? "In arrivo"}</span>
       </div>
       <p className={s.meta}>
         {doc.luogo}, episodio {doc.numero}

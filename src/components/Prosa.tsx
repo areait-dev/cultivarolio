@@ -4,15 +4,17 @@ import { Ruvido } from "./Ruvido";
 import s from "./Prosa.module.css";
 
 /** Rende il corpo dell'articolo a blocchi strutturati arrivato dal CMS. */
-export function Prosa({ blocchi }: { blocchi: Blocco[] }) {
+export function Prosa({ blocchi, className }: { blocchi: Blocco[]; className?: string }) {
   return (
-    <div className={s.prosa}>
+    <div className={className ? `${s.prosa} ${className}` : s.prosa}>
       {blocchi.map((b, i) => {
         switch (b.tipo) {
           case "paragrafo":
             return <p key={i}>{b.testo}</p>;
           case "titolo":
             return <h2 key={i}>{b.testo}</h2>;
+          case "sottotitolo":
+            return <h3 key={i}>{b.testo}</h3>;
           case "citazione":
             return (
               <Ruvido key={i} as="blockquote" forma="striscia" tono="lilla" className={s.citazione}>

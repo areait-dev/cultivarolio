@@ -76,8 +76,8 @@ export default async function Articolo({ params }: Props) {
         </Meta>
       </HeroInterno>
 
-      <Sezione className={s.corpoArticolo}>
-        <Prosa blocchi={a.corpo} />
+      <Sezione stretto className={s.corpoArticolo}>
+        <Prosa blocchi={a.corpo} className={s.prosaArticolo} />
         <div className={s.chiusura}>
           <Illustrazione src={a.illustrazione ?? "/illustrazioni/foglie-carbone.svg"} larghezza={220} />
         </div>

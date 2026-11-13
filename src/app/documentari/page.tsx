@@ -32,7 +32,7 @@ export default async function Documentari() {
     name: d.titolo,
     description: d.descrizione,
     url: assoluto(`/documentari#${d.slug}`),
-    duration: durataIso(d.durata),
+    ...(d.durata ? { duration: durataIso(d.durata) } : {}),
     contentLocation: { "@type": "Place", name: d.luogo },
     inLanguage: "it",
     publisher: { "@type": "Organization", name: site.titolare.ragioneSociale },
@@ -78,8 +78,17 @@ export default async function Documentari() {
               <dl className={s.scheda}>
                 <dt>{t.etichette.territorio}</dt>
                 <dd>{d.luogo}</dd>
-                <dt>{t.etichette.durata}</dt>
-                <dd>{d.durata}</dd>
+                {d.durata ? (
+                  <>
+                    <dt>{t.etichette.durata}</dt>
+                    <dd>{d.durata}</dd>
+                  </>
+                ) : (
+                  <>
+                    <dt>Stato</dt>
+                    <dd>In arrivo</dd>
+                  </>
+                )}
               </dl>
               <p>{d.descrizione}</p>
             </div>

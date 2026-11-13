@@ -26,7 +26,7 @@ export const testi = {
       occhiello: "I documentari",
       titolo: "Storie di olio, storie di Sicilia",
       intro:
-        "Tre documentari per scoprire i territori, le esperienze e le tradizioni che si nascondono dietro l’eccellenza certificata dell’olio extravergine d’oliva IGP.",
+        "Tre documentari in arrivo per scoprire i territori, le esperienze e le tradizioni che si nascondono dietro l’eccellenza certificata dell’olio extravergine d’oliva IGP.",
       pulsante: "Vai ai documentari",
     },
     blog: {
