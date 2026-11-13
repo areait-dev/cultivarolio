@@ -23,8 +23,18 @@ export default function Cookie() {
         <ProsaTesto>
           <h2>Cookie tecnici</h2>
           <p>
-            Il sito non usa cookie di profilazione né strumenti di analisi. Per ricordare la tua scelta sui video salva
-            nel browser (localStorage) una sola voce, <code>cultivar-consenso-v1</code>, con l’esito e la data della scelta.
+            Il sito non usa cookie di profilazione. Per ricordare la tua scelta salva nel browser (localStorage) una sola
+            voce, <code>cultivar-consenso-v1</code>, con l’esito e la data.
+          </p>
+          <h2>Statistiche (Google Analytics)</h2>
+          <p>
+            Solo se accetti, il sito carica Google Tag Manager e Google Analytics, che impostano cookie (come{" "}
+            <code>_ga</code>) per misurare in forma statistica le visite: pagine viste, provenienza, dispositivo. Se
+            rifiuti, non viene caricato nulla di Google. Informativa di{" "}
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+              Google<span className="sr-only"> (si apre in una nuova scheda)</span>
+            </a>
+            .
           </p>
           <h2>Video di YouTube</h2>
           <p>
@@ -38,7 +48,7 @@ export default function Cookie() {
           </p>
           <h2>Gestire le tue preferenze</h2>
           <p>
-            Puoi accettare i video una volta sola, accettarli per sempre o rifiutarli. Per cambiare idea:{" "}
+            Puoi accettare o rifiutare statistiche e video; i video si possono anche accettare uno alla volta. Per cambiare idea:{" "}
             <RiapriConsenso />. Puoi anche cancellare i dati del sito dalle impostazioni del browser.
           </p>
           <p>

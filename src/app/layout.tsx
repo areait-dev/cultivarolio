@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import { Analytics } from "@/components/Analytics";
 import { ConsensoProvider } from "@/components/Consenso";
 import { PiePagina } from "@/components/PiePagina";
 import { Testata } from "@/components/Testata";
@@ -50,6 +51,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             {children}
           </main>
           {!inCostruzione && <PiePagina />}
+          {!inCostruzione && <Analytics />}
         </ConsensoProvider>
       </body>
     </html>

@@ -34,7 +34,7 @@ export default function Privacy() {
           <p>
             Attraverso il modulo contatti raccogliamo nome e cognome, indirizzo email, il profilo che scegli (consumatore,
             buyer, operatore Ho.Re.Ca., produttore, stampa, altro) e il testo del messaggio. Il sito non usa cookie di
-            profilazione né strumenti di analisi.
+            profilazione; gli strumenti di statistica si attivano solo con il tuo consenso (vedi cookie policy).
           </p>
           <h2>Perché e su quale base</h2>
           <p>

@@ -6,12 +6,11 @@ import { Pulsante } from "./Pulsante";
 import s from "./Consenso.module.css";
 
 /**
- * Consenso per i contenuti di terze parti (video YouTube).
- * Il sito non usa cookie di profilazione né analytics: se ne aggiungi,
- * estendi `Preferenze` con una nuova categoria e aggiorna la cookie policy.
+ * Consenso per i contenuti di terze parti (video YouTube) e per le statistiche (Google Tag Manager / Analytics).
+ * Se aggiungi una categoria, estendi `Preferenze` e aggiorna la cookie policy.
  */
 type Stato = "accettato" | "rifiutato";
-type Preferenze = { mediaEsterni: Stato; data: string };
+type Preferenze = { mediaEsterni: Stato; statistiche: Stato; data: string };
 
 const CHIAVE = "cultivar-consenso-v1";
 
@@ -32,7 +31,9 @@ export function useConsenso() {
 function leggi(): Preferenze | null {
   try {
     const v = localStorage.getItem(CHIAVE);
-    return v ? (JSON.parse(v) as Preferenze) : null;
+    const p = v ? (JSON.parse(v) as Partial<Preferenze>) : null;
+    // scelte salvate prima delle statistiche: si chiede di nuovo
+    return p && p.mediaEsterni && p.statistiche ? (p as Preferenze) : null;
   } catch {
     return null;
   }
@@ -51,7 +52,8 @@ export function ConsensoProvider({ children, senzaBanner = false }: { children: 
   }, []);
 
   const salva = useCallback((stato: Stato) => {
-    const p = { mediaEsterni: stato, data: new Date().toISOString() };
+    const eraAccettato = leggi()?.statistiche === "accettato";
+    const p = { mediaEsterni: stato, statistiche: stato, data: new Date().toISOString() };
     try {
       localStorage.setItem(CHIAVE, JSON.stringify(p));
     } catch {
@@ -59,6 +61,16 @@ export function ConsensoProvider({ children, senzaBanner = false }: { children: 
     }
     setPreferenze(p);
     setAperto(false);
+    if (stato === "rifiutato" && eraAccettato) {
+      // revoca: cancella i cookie di Google Analytics e ricarica per fermare gli script già caricati
+      for (const nome of document.cookie.split(";").map((c) => c.split("=")[0].trim())) {
+        if (nome.startsWith("_ga") || nome === "_gid") {
+          document.cookie = `${nome}=; Max-Age=0; path=/`;
+          document.cookie = `${nome}=; Max-Age=0; path=/; domain=.${location.hostname.replace(/^www\./, "")}`;
+        }
+      }
+      location.reload();
+    }
   }, []);
 
   const riapri = useCallback(() => setAperto(true), []);
@@ -79,11 +91,12 @@ function Banner({ onScelta }: { onScelta: (s: Stato) => void }) {
     <section className={`${s.banner} superficie-carbone`} role="region" aria-labelledby="consenso-titolo">
       <div className={s.testo}>
         <h2 id="consenso-titolo" className={s.titolo}>
-          Cookie e video
+          Cookie, statistiche e video
         </h2>
         <p>
-          Usiamo solo cookie tecnici. I documentari sono ospitati su YouTube, che può impostare cookie propri quando
-          carichi un video. Puoi accettarli ora o decidere video per video.{" "}
+          Usiamo cookie tecnici e, solo se accetti, strumenti di statistica (Google Analytics) per capire come viene
+          usato il sito. I documentari sono ospitati su YouTube, che può impostare cookie propri quando carichi un
+          video.{" "}
           <Link href="/cookie" className={s.link}>
             Cookie policy
           </Link>
@@ -94,7 +107,7 @@ function Banner({ onScelta }: { onScelta: (s: Stato) => void }) {
           Solo tecnici
         </Pulsante>
         <Pulsante variante="chiaro" dimensione="piccolo" onClick={() => onScelta("accettato")}>
-          Accetta video YouTube
+          Accetta tutto
         </Pulsante>
       </div>
     </section>
