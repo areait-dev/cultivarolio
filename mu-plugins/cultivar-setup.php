@@ -18,8 +18,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/** SEGNAPOSTO: se NEXT_URL non è definita in wp-config.php si usa questo dominio. Sostituire (README-MIGRAZIONE.md). */
-const CULTIVAR_cultivarolio.it = 'cultivarolio.it';
+/** Dominio del sito pubblico: valore di riserva se NEXT_URL non è definita in wp-config.php. */
+const CULTIVAR_DOMINIO = 'cultivarolio.it';
 
 /** Tipi di contenuto che fanno rigenerare il frontend. */
 const CULTIVAR_TIPI_REVALIDATE = array( 'articolo', 'documentario', 'page' );
@@ -32,7 +32,7 @@ function cultivar_next_url() {
 	if ( defined( 'NEXT_URL' ) && NEXT_URL ) {
 		return rtrim( NEXT_URL, '/' );
 	}
-	return 'https://' . CULTIVAR_cultivarolio.it;
+	return 'https://' . CULTIVAR_DOMINIO;
 }
 
 /** Origini a cui è permesso leggere la REST dal browser. Mai "*". */

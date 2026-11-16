@@ -23,7 +23,7 @@ function verificaUrlPubblico() {
 
 /**
  * Dominio di WordPress (immagini caricate in wp-content/uploads), ricavato da NEXT_PUBLIC_WP_API_URL.
- * Segnaposto wp.cultivarolio.it finché il dominio non è deciso (vedi README-MIGRAZIONE.md).
+ * Se la variabile manca si usa il dominio di produzione di WordPress.
  */
 function dominioWordpress(): string {
   try {

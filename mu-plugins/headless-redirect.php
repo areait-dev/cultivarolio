@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-// Il dominio del frontend: NEXT_URL di wp-config.php; segnaposto finché non è deciso (README-MIGRAZIONE.md).
+// Il dominio del frontend: NEXT_URL di wp-config.php; altrimenti il dominio di produzione.
 if ( ! function_exists( 'cultivar_redirect_base' ) ) {
 	function cultivar_redirect_base() {
 		if ( defined( 'NEXT_URL' ) && NEXT_URL ) {
