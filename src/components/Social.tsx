@@ -1,15 +1,15 @@
-import { site } from "@/lib/site";
+import { getSito } from "@/lib/dati-sito";
 import { IconaFacebook, IconaInstagram, IconaTikTok, IconaYouTube } from "./Icone";
 import s from "./Social.module.css";
 
-const voci = [
-  { nome: "YouTube", href: site.social.youtube, Icona: IconaYouTube },
-  { nome: "Instagram", href: site.social.instagram, Icona: IconaInstagram },
-  { nome: "Facebook", href: site.social.facebook, Icona: IconaFacebook },
-  { nome: "TikTok", href: site.social.tiktok, Icona: IconaTikTok },
-];
-
-export function Social() {
+export async function Social() {
+  const { social } = await getSito();
+  const voci = [
+    { nome: "YouTube", href: social.youtube, Icona: IconaYouTube },
+    { nome: "Instagram", href: social.instagram, Icona: IconaInstagram },
+    { nome: "Facebook", href: social.facebook, Icona: IconaFacebook },
+    { nome: "TikTok", href: social.tiktok, Icona: IconaTikTok },
+  ];
   return (
     <ul className={s.social} role="list">
       {voci.map(({ nome, href, Icona }) => (

@@ -21,12 +21,24 @@ function verificaUrlPubblico() {
   if (host === "localhost" || host === "127.0.0.1") throw errore(`punta a ${host}`);
 }
 
+/**
+ * Dominio di WordPress (immagini caricate in wp-content/uploads), ricavato da NEXT_PUBLIC_WP_API_URL.
+ * Segnaposto wp.cultivarolio.it finché il dominio non è deciso (vedi README-MIGRAZIONE.md).
+ */
+function dominioWordpress(): string {
+  try {
+    return new URL(process.env.NEXT_PUBLIC_WP_API_URL ?? "").hostname;
+  } catch {
+    return "wp.cultivarolio.it";
+  }
+}
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
-    // Aggiungi qui il dominio delle immagini del CMS scelto (es. cdn.sanity.io).
-    // Non aggiungere i.ytimg.com: le copertine dei video si servono dal sito (nessuna richiesta a YouTube prima del click).
-    remotePatterns: [],
+    // Immagini dal CMS WordPress. Non aggiungere i.ytimg.com: le copertine dei video si servono dal sito
+    // (nessuna richiesta a YouTube prima del click).
+    remotePatterns: [{ protocol: "https", hostname: dominioWordpress(), pathname: "/wp-content/uploads/**" }],
   },
   // I filtri del blog sono link ?categoria=… ma si servono da pagine statiche (ISR):
   // /blog?categoria=filiera → /blog/categoria/filiera (l'URL nel browser non cambia).

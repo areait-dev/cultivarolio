@@ -1,4 +1,11 @@
-/** Dati del sito: un solo posto per recapiti, social e obblighi del cofinanziamento. */
+import type { Largo } from "./testi";
+
+/**
+ * Dati del sito di riserva: recapiti, social e obblighi del cofinanziamento.
+ * Il sito legge questi dati dalla pagina WordPress "opzioni-globali" (vedi dati-sito.ts);
+ * questi valori servono se WordPress non risponde o un campo è vuoto.
+ * `url`, `locale` e `navigazione` restano sempre qui (sono struttura, non contenuto).
+ */
 export const site = {
   nome: "Cultivar",
   titoloCompleto: "Cultivar – Storie di Olio d’Oliva IGP di Sicilia",
@@ -40,3 +47,5 @@ export const site = {
 } as const;
 
 export type VoceNavigazione = (typeof site.navigazione)[number];
+
+export type Sito = Largo<typeof site>;

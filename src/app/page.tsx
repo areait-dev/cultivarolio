@@ -8,17 +8,24 @@ import { LinkTesto, Sezione, TestaSezione } from "@/components/Sezione";
 import { Intro, TitoloDisplay, TitoloSezione } from "@/components/Testo";
 import { getArticoli, getDocumentari } from "@/lib/content";
 import { assoluto, metaPagina } from "@/lib/seo";
-import { site } from "@/lib/site";
-import { testi } from "@/lib/testi";
+import { getSeoPagina, getSito, getTesti } from "@/lib/dati-sito";
 import s from "./page.module.css";
 
 // ISR: la home legge documentari e articoli dal CMS
 export const revalidate = 3600;
 
-export const metadata: Metadata = metaPagina({ descrizione: testi.home.sottotitolo, percorso: "/" });
+export async function generateMetadata(): Promise<Metadata> {
+  const [testi, seo] = await Promise.all([getTesti(), getSeoPagina("home")]);
+  return metaPagina({ descrizione: testi.home.sottotitolo, percorso: "/", seo });
+}
 
 export default async function Home() {
-  const [documentari, articoli] = await Promise.all([getDocumentari(), getArticoli(undefined, 3)]);
+  const [documentari, articoli, testi, site] = await Promise.all([
+    getDocumentari(),
+    getArticoli(undefined, 3),
+    getTesti(),
+    getSito(),
+  ]);
   const t = testi.home;
   const toniArticolo = ["kraft", "lilla", "kraft"] as const;
 
@@ -86,8 +93,8 @@ export default async function Home() {
               <Intro key={p}>{p}</Intro>
             ))}
             <div className={s.numeri}>
-              <Numero cifra={3} titolo="territori" testo="Province di Ragusa, Catania e Trapani" />
-              <Numero cifra={3} titolo="documentari" testo="Da 15–20 minuti ciascuno" />
+              <Numero cifra={documentari.length || 3} titolo="territori" testo={t.numeri.territori} />
+              <Numero cifra={documentari.length || 3} titolo="documentari" testo={t.numeri.documentari} />
             </div>
             <div>
               <Pulsante href="/il-progetto">

@@ -7,17 +7,16 @@ import { Ruvido } from "@/components/Ruvido";
 import { Sezione } from "@/components/Sezione";
 import { TitoloDisplay } from "@/components/Testo";
 import { metaPagina } from "@/lib/seo";
-import { site } from "@/lib/site";
-import { testi } from "@/lib/testi";
+import { getSeoPagina, getSito, getTesti } from "@/lib/dati-sito";
 import s from "./pagina.module.css";
 
-export const metadata: Metadata = metaPagina({
-  titolo: "Contatti",
-  descrizione: testi.contatti.intro,
-  percorso: "/contatti",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  const [testi, seo] = await Promise.all([getTesti(), getSeoPagina("contatti")]);
+  return metaPagina({ titolo: "Contatti", descrizione: testi.contatti.intro, percorso: "/contatti", seo });
+}
 
-export default function Contatti() {
+export default async function Contatti() {
+  const [testi, site] = await Promise.all([getTesti(), getSito()]);
   const t = site.titolare;
   return (
     <>
@@ -28,7 +27,7 @@ export default function Contatti() {
       />
       <Sezione>
         <div className={s.griglia}>
-          <ModuloContatti />
+          <ModuloContatti profili={testi.contatti.profili} />
           <Ruvido as="aside" forma="pannello" tono="kraft" riquadro aria-label="Recapiti">
             <div className={s.recapiti}>
               <TitoloDisplay as="p" dimensione="s" minuscolo>

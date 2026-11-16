@@ -4,12 +4,12 @@ import { Ruvido } from "./Ruvido";
 import { Sezione } from "./Sezione";
 import { Social } from "./Social";
 import { TitoloDisplay } from "./Testo";
-import { site } from "@/lib/site";
-import { testi } from "@/lib/testi";
+import { getSito, getTesti } from "@/lib/dati-sito";
 import s from "./InvitoCanale.module.css";
 
 /** «Segui il racconto sul nostro canale YouTube e sui social»: chiude le pagine principali. */
-export function InvitoCanale() {
+export async function InvitoCanale() {
+  const [testi, site] = await Promise.all([getTesti(), getSito()]);
   const t = testi.home.invito;
   return (
     <Sezione senzaSopra>

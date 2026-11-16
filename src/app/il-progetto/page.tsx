@@ -7,21 +7,24 @@ import { Sezione } from "@/components/Sezione";
 import { Intro, TitoloDisplay, TitoloSezione } from "@/components/Testo";
 import { getDocumentari } from "@/lib/content";
 import { metaPagina } from "@/lib/seo";
-import { testi } from "@/lib/testi";
+import { getSeoPagina, getTesti } from "@/lib/dati-sito";
 import s from "./pagina.module.css";
 
 // ISR: i territori e i partner arrivano dai documentari del CMS
 export const revalidate = 3600;
 
-export const metadata: Metadata = metaPagina({
-  titolo: "Il progetto",
-  descrizione:
-    "Cultivar nasce da un’idea semplice. Un prodotto si capisce davvero quando se ne conosce la storia.",
-  percorso: "/il-progetto",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  const [testi, seo] = await Promise.all([getTesti(), getSeoPagina("il-progetto")]);
+  return metaPagina({
+    titolo: "Il progetto",
+    descrizione: testi.progetto.introduzione.split(/(?<=\.)\s/).slice(0, 2).join(" "),
+    percorso: "/il-progetto",
+    seo,
+  });
+}
 
 export default async function IlProgetto() {
-  const documentari = await getDocumentari();
+  const [documentari, testi] = await Promise.all([getDocumentari(), getTesti()]);
   const t = testi.progetto;
 
   return (

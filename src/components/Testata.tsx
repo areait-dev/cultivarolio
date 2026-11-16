@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { site } from "@/lib/site";
+type VoceNavigazione = { href: string; etichetta: string };
 import { Pulsante } from "./Pulsante";
 import s from "./Testata.module.css";
 
@@ -11,7 +11,7 @@ function attiva(pathname: string, href: string) {
   return href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
 }
 
-export function Testata() {
+export function Testata({ navigazione, youtube }: { navigazione: readonly VoceNavigazione[]; youtube: string }) {
   const pathname = usePathname();
   const [aperto, setAperto] = useState(false);
   const bottone = useRef<HTMLButtonElement>(null);
@@ -53,7 +53,7 @@ export function Testata() {
         </button>
 
         <ul id="menu-principale" className={`${s.menu} ${aperto ? s.aperto : ""}`} role="list">
-          {site.navigazione.map((v) => (
+          {navigazione.map((v) => (
             <li key={v.href}>
               <Link href={v.href} aria-current={attiva(pathname, v.href) ? "page" : undefined} className={s.voce}>
                 {v.etichetta}
@@ -61,13 +61,13 @@ export function Testata() {
             </li>
           ))}
           <li className={s.ctaMobile}>
-            <Pulsante href={site.social.youtube} variante="chiaro" dimensione="piccolo">
+            <Pulsante href={youtube} variante="chiaro" dimensione="piccolo">
               Iscriviti al canale
             </Pulsante>
           </li>
         </ul>
 
-        <Pulsante href={site.social.youtube} variante="chiaro" dimensione="piccolo" className={s.cta}>
+        <Pulsante href={youtube} variante="chiaro" dimensione="piccolo" className={s.cta}>
           Iscriviti al canale
         </Pulsante>
       </nav>

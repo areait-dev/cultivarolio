@@ -1,11 +1,12 @@
 /**
- * Testi delle pagine statiche, ripresi LETTERALMENTE da Testi_per_sito_web.docx.
- * Non vanno riscritti qui: se cambiano, si aggiorna questo file.
+ * Testi di riserva delle pagine statiche, ripresi LETTERALMENTE da Testi_per_sito_web.docx.
+ * Il sito legge i testi da WordPress (vedi dati-sito.ts): questi valori si usano solo se WordPress
+ * non risponde o se un campo è vuoto, così il build non si rompe e la pagina non resta vuota.
  *
  * REFUSO = errore presente nel docx, lasciato com'è in attesa della correzione del cliente.
  * (Cerca "REFUSO" per trovarli tutti.)
  */
-export const testi = {
+export const testiDefault = {
   home: {
     // Titolo del docx: "Cultivar. Storie di Olio d’Oliva IGP di Sicilia" (il nome è il logo, il resto è il sottotitolo display)
     titoloResto: "Storie di Olio d’Oliva IGP di Sicilia",
@@ -22,15 +23,18 @@ export const testi = {
       ],
       pulsante: "Scopri di più",
     },
+    // Le cifre ("3 territori", "3 documentari") si calcolano dai documentari; qui solo le didascalie.
+    numeri: {
+      territori: "Province di Ragusa, Catania e Trapani",
+      documentari: "Da 15–20 minuti ciascuno",
+    },
     documentari: {
-      occhiello: "I documentari",
       titolo: "Storie di olio, storie di Sicilia",
       intro:
         "Tre documentari in arrivo per scoprire i territori, le esperienze e le tradizioni che si nascondono dietro l’eccellenza certificata dell’olio extravergine d’oliva IGP.",
       pulsante: "Vai ai documentari",
     },
     blog: {
-      occhiello: "Dal blog",
       titolo: "Conoscere l’olio per sceglierlo meglio",
       link: "Tutti gli articoli",
     },
@@ -131,5 +135,18 @@ export const testi = {
     // Il docx non ha un titolo per la pagina: uso l'etichetta del menu.
     titolo: "Contatti",
     intro: "Vuoi saperne di più sul progetto o ricevere informazioni? Scrivici: ti risponderemo al più presto.",
+    profili: ["Consumatore", "Buyer", "Operatore Ho.Re.Ca.", "Produttore", "Stampa", "Altro"],
   },
 } as const;
+
+type Largo<T> = T extends string
+  ? string
+  : T extends readonly (infer U)[]
+    ? Largo<U>[]
+    : T extends object
+      ? { -readonly [K in keyof T]: Largo<T[K]> }
+      : T;
+
+/** Forma dei testi (tipi larghi: i valori arrivano da WordPress, non sono costanti). */
+export type Testi = Largo<typeof testiDefault>;
+export type { Largo };

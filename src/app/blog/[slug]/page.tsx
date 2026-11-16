@@ -11,6 +11,7 @@ import { Meta } from "@/components/Testo";
 import { getArticolo, getArticoli } from "@/lib/content";
 import { formattaData } from "@/lib/format";
 import { assoluto, metaPagina } from "@/lib/seo";
+import { getSito } from "@/lib/dati-sito";
 import { site } from "@/lib/site";
 import s from "../blog.module.css";
 
@@ -28,20 +29,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const a = await getArticolo(slug);
   if (!a) return {};
-  return {
-    ...metaPagina({
-      titolo: a.seo?.titolo ?? a.titolo,
-      descrizione: a.seo?.descrizione ?? a.estratto,
-      percorso: `/blog/${a.slug}`,
-      tipo: "article",
-      articolo: { data: a.data, categoria: a.categoria.nome },
-    }),
-  };
+  return metaPagina({
+    titolo: a.titolo,
+    descrizione: a.estratto,
+    percorso: `/blog/${a.slug}`,
+    tipo: "article",
+    articolo: { data: a.data, categoria: a.categoria.nome },
+    seo: a.seo,
+  });
 }
 
 export default async function Articolo({ params }: Props) {
   const { slug } = await params;
-  const a = await getArticolo(slug);
+  const [a, sito] = await Promise.all([getArticolo(slug), getSito()]);
   if (!a) notFound();
 
   const dati = {
@@ -54,8 +54,8 @@ export default async function Articolo({ params }: Props) {
     inLanguage: "it",
     mainEntityOfPage: assoluto(`/blog/${a.slug}`),
     ...(a.copertina ? { image: [assoluto(a.copertina.src)] } : { image: [assoluto("/og.png")] }),
-    author: { "@type": "Organization", name: site.titolare.ragioneSociale },
-    publisher: { "@type": "Organization", name: site.titolare.ragioneSociale, url: site.url },
+    author: { "@type": "Organization", name: sito.titolare.ragioneSociale },
+    publisher: { "@type": "Organization", name: sito.titolare.ragioneSociale, url: site.url },
   };
 
   return (

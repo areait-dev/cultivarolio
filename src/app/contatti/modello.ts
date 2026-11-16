@@ -1,6 +1,4 @@
-/** Condiviso tra il modulo (client) e l'azione (server). */
-export const PROFILI = ["Consumatore", "Buyer", "Operatore Ho.Re.Ca.", "Produttore", "Stampa", "Altro"] as const;
-
+/** Tipi condivisi tra il modulo (client) e l'API /api/contatti (server). */
 export type Campo = "nome" | "email" | "messaggio" | "consenso";
 export type StatoModulo = {
   esito: "inattivo" | "ok" | "errore";
@@ -8,4 +6,3 @@ export type StatoModulo = {
   errori?: Partial<Record<Campo, string>>;
   valori?: { nome?: string; email?: string; profilo?: string; messaggio?: string };
 };
-

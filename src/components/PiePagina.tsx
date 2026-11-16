@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { site } from "@/lib/site";
+import { getSito } from "@/lib/dati-sito";
 import { RiapriConsenso } from "./Consenso";
 import { Social } from "./Social";
 import s from "./PiePagina.module.css";
 
-export function PiePagina() {
+export async function PiePagina() {
+  const site = await getSito();
   const { titolare, cofinanziamento } = site;
   const anno = new Date().getFullYear();
   return (

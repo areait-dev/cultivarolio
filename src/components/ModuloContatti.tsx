@@ -1,9 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useActionState, useEffect, useRef } from "react";
-import { inviaContatto } from "@/app/contatti/azioni";
-import { PROFILI, type StatoModulo } from "@/app/contatti/modello";
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import type { StatoModulo } from "@/app/contatti/modello";
 import { Pulsante } from "./Pulsante";
 import { Ruvido } from "./Ruvido";
 import s from "./ModuloContatti.module.css";
@@ -11,15 +10,55 @@ import s from "./ModuloContatti.module.css";
 const iniziale: StatoModulo = { esito: "inattivo" };
 
 /**
- * Modulo contatti con Server Action: funziona anche senza JavaScript
- * (invio classico), con JS mostra errori e conferma senza ricaricare.
- * La validazione vera è sul server; il browser fa solo da primo filtro.
+ * Modulo contatti: invia in JSON a /api/contatti (validazione con zod + email via Resend).
+ * La validazione vera è sul server; il browser mostra errori e conferma senza ricaricare.
+ * `profili` arriva da WordPress (pagina "contatti") e il server li ricontrolla.
  */
-export function ModuloContatti() {
-  const [stato, azione, inCorso] = useActionState(inviaContatto, iniziale);
+export function ModuloContatti({ profili }: { profili: string[] }) {
+  const [stato, setStato] = useState<StatoModulo>(iniziale);
+  const [inCorso, setInCorso] = useState(false);
   const riepilogo = useRef<HTMLDivElement>(null);
   const e = stato.errori ?? {};
   const v = stato.esito === "ok" ? {} : (stato.valori ?? {});
+
+  // Il pulsante resta attivo (così non perde il focus): durante l'invio si blocca un secondo invio qui
+  async function invia(ev: FormEvent<HTMLFormElement>) {
+    ev.preventDefault();
+    if (inCorso) return;
+    const form = ev.currentTarget;
+    const dati = new FormData(form);
+    setInCorso(true);
+    try {
+      const r = await fetch("/api/contatti", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nome: dati.get("nome"),
+          email: dati.get("email"),
+          profilo: dati.get("profilo"),
+          messaggio: dati.get("messaggio"),
+          consenso: dati.get("consenso") === "on",
+          sito_web: dati.get("sito_web"),
+        }),
+      });
+      const esito = (await r.json()) as StatoModulo;
+      setStato(esito);
+      if (esito.esito === "ok") form.reset();
+    } catch {
+      setStato({
+        esito: "errore",
+        messaggio: "Non siamo riusciti a inviare il messaggio. Riprova tra poco o scrivici via email.",
+        valori: {
+          nome: String(dati.get("nome") ?? ""),
+          email: String(dati.get("email") ?? ""),
+          profilo: String(dati.get("profilo") ?? ""),
+          messaggio: String(dati.get("messaggio") ?? ""),
+        },
+      });
+    } finally {
+      setInCorso(false);
+    }
+  }
 
   // porta il focus sull'esito, così chi usa lettori di schermo lo sente subito
   useEffect(() => {
@@ -27,15 +66,7 @@ export function ModuloContatti() {
   }, [stato]);
 
   return (
-    <form
-      action={azione}
-      className={s.modulo}
-      noValidate
-      // Il pulsante resta attivo (così non perde il focus): durante l'invio si blocca un secondo invio qui
-      onSubmit={(ev) => {
-        if (inCorso) ev.preventDefault();
-      }}
-    >
+    <form className={s.modulo} noValidate onSubmit={invia}>
       <div ref={riepilogo} tabIndex={-1} aria-live="polite" className={s.esitoContenitore}>
         {stato.esito === "ok" && (
           <Ruvido forma="striscia" tono="lilla" riquadro role="status">
@@ -76,9 +107,9 @@ export function ModuloContatti() {
       <fieldset className={s.fieldset}>
         <legend className={s.etichetta}>Chi sei</legend>
         <div className={s.scelte}>
-          {PROFILI.map((p) => (
+          {profili.map((p) => (
             <label key={p} className={s.scelta}>
-              <input type="radio" name="profilo" value={p} defaultChecked={(v.profilo ?? "Consumatore") === p} />
+              <input type="radio" name="profilo" value={p} defaultChecked={(v.profilo ?? profili[0]) === p} />
               <span>{p}</span>
             </label>
           ))}

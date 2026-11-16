@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getCategorie } from "@/lib/content";
 import { metaPagina } from "@/lib/seo";
-import { testi } from "@/lib/testi";
+import { getTesti } from "@/lib/dati-sito";
 import { ElencoBlog } from "../../ElencoBlog";
 
 /**
@@ -22,12 +22,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const categoria = (await getCategorie()).find((c) => c.slug === slug);
   if (!categoria) return {};
+  const testi = await getTesti();
   return {
-    ...metaPagina({
+    ...(await metaPagina({
       titolo: `Blog · ${categoria.nome}`,
       descrizione: testi.blog.intro,
       percorso: `/blog?categoria=${slug}`,
-    }),
+    })),
     alternates: undefined,
     robots: { index: false, follow: true },
   };

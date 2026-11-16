@@ -53,27 +53,25 @@ I filtri sono link `/blog?categoria=filiera` e funzionano senza JavaScript. Per 
 (ISR), `next.config.ts` riscrive `/blog?categoria=x` verso `/blog/categoria/x`; l'URL nel browser non cambia.
 La rotta interna è `noindex`.
 
-### Testi
+### Testi e contenuti
 
-I testi delle pagine statiche sono in `src/lib/testi.ts`, copiati dal documento `Testi_per_sito_web.docx`.
-Gli errori presenti nel documento sono lasciati com’erano e marcati con `REFUSO`: cerca quella parola e correggi.
-Documentari e articoli arrivano dal CMS (oggi dal mock).
+Testi, documentari, articoli, recapiti e note legali si gestiscono in **WordPress headless** (ACF free, REST nativa):
+vedi **[README-MIGRAZIONE.md](README-MIGRAZIONE.md)** per installazione, campi e checklist.
 
-## Collegare il CMS
+- `src/lib/testi.ts` e `src/lib/site.ts` restano come **testi di riserva**: si usano solo se WordPress non risponde
+  o un campo è vuoto (il build non si rompe). Gli errori del documento originale sono marcati `REFUSO`.
+- Senza `NEXT_PUBLIC_WP_API_URL` il sito usa il mock (`src/lib/content/adapters/mock.ts`) e i testi di riserva.
+  Attenzione: un `.env.local` con `CMS_PROVIDER=mock` forza il mock anche se l'URL di WordPress è impostato.
 
-Le pagine non chiamano mai il CMS: usano solo `src/lib/content`.
+## Collegamento a WordPress
 
-1. Crea `src/lib/content/adapters/<cms>.ts` che esporta un oggetto `ContentSource` (vedi `types.ts`:
-   `getArticoli`, `getArticolo`, `getCategorie`, `getDocumentari`). Il corpo degli articoli è una lista di blocchi
-   strutturati (paragrafo, titolo, citazione, elenco, immagine): niente HTML libero.
-2. Registralo in `sorgenti` in `src/lib/content/index.ts`.
-3. Imposta `CMS_PROVIDER=<cms>` (+ `CMS_API_URL`, `CMS_API_TOKEN`) nell’ambiente.
-4. Se le immagini arrivano da un dominio esterno, aggiungilo a `images.remotePatterns` in `next.config.ts`.
-5. Aggiorna gli slug delle categorie se il CMS ne usa di diversi: servono solo per i filtri.
+Le pagine non chiamano mai WordPress direttamente: usano `src/lib/content` (articoli, documentari, categorie) e
+`src/lib/dati-sito.ts` (testi, recapiti, SEO, note legali). Il client REST è `src/lib/wordpress.ts`.
 
-ISR: home, il progetto, documentari e articoli si rigenerano ogni ora (`revalidate = 3600`), l’elenco del blog ogni
-10 minuti. Per aggiornamenti immediati si può aggiungere un webhook del CMS che chiama `revalidatePath`.
-L’adattatore `mock` contiene i testi segnaposto dell’anteprima (articoli compresi).
+- `acf-json/` field group ACF (generati da `npm run acf:genera`), `mu-plugins/` da copiare in `wp-content/mu-plugins`.
+- `/api/revalidate` e `/api/preview` sono chiamati da WordPress; `/api/contatti` riceve il modulo (zod + Resend).
+- ISR di sicurezza: 1 ora (pagine), 10 minuti (elenco blog). L'aggiornamento vero arriva dal webhook di WordPress.
+- `npm run wp:testi` e `npm run wp:articolo` rigenerano i testi da incollare in WordPress (`contenuti-wp/`).
 
 ## Cambiare font
 

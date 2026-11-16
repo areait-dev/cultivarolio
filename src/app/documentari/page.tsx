@@ -9,21 +9,19 @@ import { VideoYouTube } from "@/components/VideoYouTube";
 import { getDocumentari } from "@/lib/content";
 import { durataIso } from "@/lib/format";
 import { assoluto, metaPagina } from "@/lib/seo";
-import { site } from "@/lib/site";
-import { testi } from "@/lib/testi";
+import { getSeoPagina, getSito, getTesti } from "@/lib/dati-sito";
 import s from "./pagina.module.css";
 
 // ISR: gli episodi arrivano dal CMS
 export const revalidate = 3600;
 
-export const metadata: Metadata = metaPagina({
-  titolo: "Documentari",
-  descrizione: testi.documentari.intro,
-  percorso: "/documentari",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  const [testi, seo] = await Promise.all([getTesti(), getSeoPagina("documentari")]);
+  return metaPagina({ titolo: "Documentari", descrizione: testi.documentari.intro, percorso: "/documentari", seo });
+}
 
 export default async function Documentari() {
-  const documentari = await getDocumentari();
+  const [documentari, testi, site] = await Promise.all([getDocumentari(), getTesti(), getSito()]);
   const t = testi.documentari;
 
   const dati = documentari.map((d) => ({

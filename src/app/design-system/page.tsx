@@ -13,12 +13,13 @@ import { metaPagina } from "@/lib/seo";
 import s from "./ds.module.css";
 import { leggiColori } from "./tokens";
 
-export const metadata: Metadata = metaPagina({
-  titolo: "Design system",
-  descrizione: "Pagina di consultazione dei token e dei componenti del sito Cultivar.",
-  percorso: "/design-system",
-  noindex: true,
-});
+export const generateMetadata = (): Promise<Metadata> =>
+  metaPagina({
+    titolo: "Design system",
+    descrizione: "Pagina di consultazione dei token e dei componenti del sito Cultivar.",
+    percorso: "/design-system",
+    noindex: true,
+  });
 
 const cls = (nome: string) => nome.replace(/-/g, "_");
 

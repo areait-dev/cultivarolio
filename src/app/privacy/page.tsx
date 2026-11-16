@@ -5,24 +5,38 @@ import { ProsaTesto } from "@/components/Prosa";
 import { NotaBozza } from "@/components/NotaBozza";
 import { Sezione } from "@/components/Sezione";
 import { metaPagina } from "@/lib/seo";
-import { site } from "@/lib/site";
+import { getPaginaLegale, getSeoPagina, getSito } from "@/lib/dati-sito";
+import { TestoLegale } from "@/components/TestoLegale";
 
-export const metadata: Metadata = metaPagina({
-  titolo: "Privacy policy",
-  descrizione: "Informativa sul trattamento dei dati personali raccolti tramite il sito Cultivar.",
-  percorso: "/privacy",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return metaPagina({
+    titolo: "Privacy policy",
+    descrizione: "Informativa sul trattamento dei dati personali raccolti tramite il sito Cultivar.",
+    percorso: "/privacy",
+    seo: await getSeoPagina("privacy"),
+  });
+}
 
 /**
+ * Il testo si scrive in WordPress (pagina con slug "privacy"); segnaposto {{ragione_sociale}}, {{sede}},
+ * {{piva}}, {{email}}, {{telefono}}. Quello qui sotto è il testo di riserva, usato solo se WordPress non risponde.
  * TESTO SEGNAPOSTO: struttura tipica di un'informativa ex artt. 13-14 Reg. UE 2016/679,
  * da far validare e completare dal legale prima della pubblicazione.
  */
-export default function Privacy() {
+export default async function Privacy() {
+  const [legale, site] = await Promise.all([getPaginaLegale("privacy"), getSito()]);
   const t = site.titolare;
   return (
     <>
       <HeroInterno occhiello="Note legali" titolo="Privacy policy" tono="kraft" stretto />
       <Sezione stretto>
+        {legale ? (
+          <>
+            {legale.mostraNotaBozza && <NotaBozza />}
+            <TestoLegale html={legale.html} />
+          </>
+        ) : (
+          <>
         <NotaBozza />
         <ProsaTesto>
           <h2>Titolare del trattamento</h2>
@@ -60,6 +74,8 @@ export default function Privacy() {
             <Link href="/cookie">cookie policy</Link>.
           </p>
         </ProsaTesto>
+          </>
+        )}
       </Sezione>
     </>
   );

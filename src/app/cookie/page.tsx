@@ -5,20 +5,37 @@ import { RiapriConsenso } from "@/components/Consenso";
 import { ProsaTesto } from "@/components/Prosa";
 import { NotaBozza } from "@/components/NotaBozza";
 import { Sezione } from "@/components/Sezione";
+import { TestoLegale } from "@/components/TestoLegale";
+import { getPaginaLegale, getSeoPagina } from "@/lib/dati-sito";
 import { metaPagina } from "@/lib/seo";
 
-export const metadata: Metadata = metaPagina({
-  titolo: "Cookie policy",
-  descrizione: "Quali cookie usa il sito Cultivar e come gestire le tue preferenze sui video YouTube.",
-  percorso: "/cookie",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  return metaPagina({
+    titolo: "Cookie policy",
+    descrizione: "Quali cookie usa il sito Cultivar e come gestire le tue preferenze sui video YouTube.",
+    percorso: "/cookie",
+    seo: await getSeoPagina("cookie"),
+  });
+}
 
-/** TESTO SEGNAPOSTO da far validare dal legale prima della pubblicazione. */
-export default function Cookie() {
+/**
+ * Il testo si scrive in WordPress (pagina con slug "cookie"); {{riapri_consenso}} mostra il pulsante delle preferenze.
+ * Quello qui sotto è il testo di riserva, usato solo se WordPress non risponde.
+ * TESTO SEGNAPOSTO da far validare dal legale prima della pubblicazione.
+ */
+export default async function Cookie() {
+  const legale = await getPaginaLegale("cookie");
   return (
     <>
       <HeroInterno occhiello="Note legali" titolo="Cookie policy" tono="kraft" stretto />
       <Sezione stretto>
+        {legale ? (
+          <>
+            {legale.mostraNotaBozza && <NotaBozza />}
+            <TestoLegale html={legale.html} />
+          </>
+        ) : (
+          <>
         <NotaBozza />
         <ProsaTesto>
           <h2>Cookie tecnici</h2>
@@ -55,6 +72,8 @@ export default function Cookie() {
             Come trattiamo i dati personali: <Link href="/privacy">privacy policy</Link>.
           </p>
         </ProsaTesto>
+          </>
+        )}
       </Sezione>
     </>
   );
