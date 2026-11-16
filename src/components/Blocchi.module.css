@@ -50,7 +50,7 @@
 }
 .territorioNome {
   font: var(--peso-normale) var(--fs-xl) / 1.05 var(--famiglia-display);
-  text-transform: lowercase;
+  text-transform: none; /* nome di città: solo l'iniziale maiuscola */
 }
 
 /* Tratto */

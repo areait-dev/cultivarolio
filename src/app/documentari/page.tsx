@@ -72,7 +72,7 @@ export default async function Documentari() {
                 {d.numero}
               </span>
               <Meta>Episodio {d.numero}</Meta>
-              <TitoloDisplay as="h2" id={`${d.slug}-titolo`} dimensione="l">
+              <TitoloDisplay as="h2" id={`${d.slug}-titolo`} dimensione="l" minuscolo={false}>
                 {d.titolo}
               </TitoloDisplay>
               <dl className={s.scheda}>

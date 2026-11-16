@@ -110,7 +110,7 @@ export default async function Home() {
           </TitoloDisplay>
           <Intro>{t.documentari.intro}</Intro>
         </TestaSezione>
-        <div className={`griglia-3 ${s.sfalsata}`}>
+        <div className="griglia-3">
           {documentari.map((d) => (
             <SchedaDocumentario key={d.slug} doc={d} />
           ))}

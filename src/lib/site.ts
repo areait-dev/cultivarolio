@@ -15,9 +15,8 @@ export const site = {
     { href: "/contatti", etichetta: "Contatti" },
   ],
 
-  // TODO: manca l'URL del canale YouTube (ora punta alla home di YouTube)
   social: {
-    youtube: "https://www.youtube.com/",
+    youtube: "https://www.youtube.com/@CultivarOlio",
     instagram: "https://www.instagram.com/cultivarolio/",
     facebook: "https://www.facebook.com/cultivarolio",
     tiktok: "https://www.tiktok.com/@cultivarolio",
@@ -27,7 +26,7 @@ export const site = {
     ragioneSociale: "Promotergroup S.p.A.",
     sede: "Via del Carubo sn, Vittoria (RG)",
     telefono: "0932 862613",
-    email: "comunicazione@promotergroup.eu",
+    email: "info@cultivarolio.it",
     piva: "13178771005",
   },
 

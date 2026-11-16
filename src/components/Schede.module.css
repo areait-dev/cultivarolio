@@ -83,6 +83,9 @@
   text-transform: lowercase;
   text-wrap: balance;
 }
+.titoloDoc {
+  text-transform: none; /* titolo = nome di città */
+}
 .titoloArticolo {
   font-size: clamp(1.375rem, 1.25rem + 0.5vw, 1.625rem);
 }

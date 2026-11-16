@@ -22,7 +22,7 @@ export function SchedaDocumentario({ doc, livello = 3 }: { doc: Documentario; li
       <p className={s.meta}>
         {doc.luogo}, episodio {doc.numero}
       </p>
-      <H className={s.titolo}>
+      <H className={`${s.titolo} ${s.titoloDoc}`}>
         <Link href={`/documentari#${doc.slug}`} className={s.link}>
           {doc.titolo}
         </Link>
