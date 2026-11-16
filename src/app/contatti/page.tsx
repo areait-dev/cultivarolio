@@ -30,7 +30,7 @@ export default async function Contatti() {
           <ModuloContatti profili={testi.contatti.profili} />
           <Ruvido as="aside" forma="pannello" tono="kraft" riquadro aria-label="Recapiti">
             <div className={s.recapiti}>
-              <TitoloDisplay as="p" dimensione="s" minuscolo>
+              <TitoloDisplay as="p" dimensione="s" minuscolo={false}>
                 {t.ragioneSociale}
               </TitoloDisplay>
               <p>
