@@ -19,12 +19,12 @@ const cornice = (corpo: string) =>
   `<div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.5;color:#1c1c1a;max-width:600px">${corpo}</div>`;
 
 /**
- * Modulo contatti: notifica a MAIL_TO_ADMIN (replyTo = email dell'utente)
+ * Modulo contatti: notifica a CONTATTI_DESTINATARIO (replyTo = email dell'utente)
  * + conferma automatica all'utente. La conferma è "best effort": se fallisce non fa fallire l'invio.
  */
 export async function inviaMessaggio(m: MessaggioContatto): Promise<void> {
-  const admin = process.env.MAIL_TO_ADMIN;
-  if (!admin && process.env.NODE_ENV === "production") throw new Error("MAIL_TO_ADMIN mancante");
+  const admin = process.env.CONTATTI_DESTINATARIO;
+  if (!admin && process.env.NODE_ENV === "production") throw new Error("CONTATTI_DESTINATARIO mancante");
   const quando = dataOra();
 
   await sendMail({

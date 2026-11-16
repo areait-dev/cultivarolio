@@ -31,7 +31,7 @@ WordPress è usato **solo come CMS**: il sito pubblico resta Next.js. Architettu
 | Ruolo | Dominio | Dove è usato |
 |---|---|---|
 | WordPress (CMS) | `wp.cultivarolio.it` | `NEXT_PUBLIC_WP_API_URL` (`https://wp.cultivarolio.it/wp-json/wp/v2`); `next.config.ts` ricava da lì il dominio delle immagini |
-| Sito pubblico (Vercel) | `cultivarolio.it` | `NEXT_URL` in `wp-config.php`, CORS, redirect 301, `MAIL_FROM`, `NEXT_PUBLIC_SITE_URL` |
+| Sito pubblico (Vercel) | `cultivarolio.it` | `NEXT_URL` in `wp-config.php`, CORS, redirect 301, `EMAIL_FROM`, `NEXT_PUBLIC_SITE_URL` |
 
 I due mu-plugin hanno `cultivarolio.it` come valore di riserva se `NEXT_URL` non è definita. Se il sito pubblico fosse invece
 `www.cultivarolio.it`, cambia `NEXT_URL`, `NEXT_PUBLIC_SITE_URL` e le costanti di riserva nei due mu-plugin.
@@ -129,7 +129,7 @@ dall'anteprima apri `/api/preview/esci`.
 | `WP_REVALIDATE_TOKEN` | = `WP_REVALIDATE_TOKEN` di wp-config.php |
 | `WP_PREVIEW_SECRET` | = `WP_PREVIEW_SECRET` di wp-config.php |
 | `WP_PREVIEW_USER`, `WP_PREVIEW_APP_PASSWORD` | passo 8 — **solo lato server, mai `NEXT_PUBLIC_`** |
-| `RESEND_API_KEY`, `MAIL_FROM`, `MAIL_TO_ADMIN` | passo 10 |
+| `EMAIL_API_KEY`, `EMAIL_FROM`, `CONTATTI_DESTINATARIO` | passo 10 |
 | `SITO_PUBBLICO` | `1` solo quando il sito deve uscire dalla pagina «in costruzione» |
 
 In locale: copia `.env.example` in `.env.local`. **Togli `CMS_PROVIDER=mock`** dal tuo `.env.local`, altrimenti il sito
@@ -141,7 +141,7 @@ restano raggiungibili (esclusi in `src/proxy.ts`).
 ## 10. Modulo contatti (Resend)
 
 1. Crea un account Resend e **verifica il dominio** `cultivarolio.it` (record DNS).
-2. `RESEND_API_KEY` = chiave API; `MAIL_FROM` = `Cultivar Olio <info@cultivarolio.it>`; `MAIL_TO_ADMIN` = `info@cultivarolio.it`. Il modulo invia la notifica e una conferma automatica all'utente.
+2. `EMAIL_API_KEY` = chiave API; `EMAIL_FROM` = `Cultivar Olio <info@cultivarolio.it>`; `CONTATTI_DESTINATARIO` = `info@cultivarolio.it`. Il modulo invia la notifica e una conferma automatica all'utente.
 3. In produzione, senza chiave, il modulo risponde con errore (non finge di inviare). In sviluppo scrive solo nel log.
 
 Differenza rispetto a prima: il modulo ora richiede JavaScript (invia in JSON a `/api/contatti`); non c'è più l'invio senza JS.

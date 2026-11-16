@@ -89,11 +89,11 @@ I font sono self-hosted con `next/font/local` in `src/app/fonts.ts` (nessuna ric
 ## Attivare l’invio email del modulo contatti
 
 Il modulo invia JSON a `/api/contatti` (zod, honeypot, controllo origine); l'invio è in `src/lib/email.ts` + `src/lib/mailer.ts` (Resend).
-Arrivano due email: la notifica a `MAIL_TO_ADMIN` (replyTo = email dell'utente) e la conferma automatica all'utente.
-In produzione, senza `RESEND_API_KEY`, il modulo mostra "Non siamo riusciti a inviare il messaggio"; in sviluppo scrive solo in console.
+Arrivano due email: la notifica a `CONTATTI_DESTINATARIO` (replyTo = email dell'utente) e la conferma automatica all'utente.
+In produzione, senza `EMAIL_API_KEY`, il modulo mostra "Non siamo riusciti a inviare il messaggio"; in sviluppo scrive solo in console.
 
 1. Verifica il dominio mittente in Resend (SPF/DKIM).
-2. Imposta `RESEND_API_KEY`, `MAIL_FROM` e `MAIL_TO_ADMIN` (in locale `.env.local`, su Vercel Production e Preview) e rifai il deploy.
+2. Imposta `EMAIL_API_KEY`, `EMAIL_FROM` e `CONTATTI_DESTINATARIO` (in locale `.env.local`, su Vercel Production e Preview) e rifai il deploy.
 3. Per provare: `npm run dev`, invia il modulo su /contatti e controlla le due caselle.
 4. Valuta un limite di richieste (rate limit) o un captcha rispettoso della privacy se arriva spam.
 

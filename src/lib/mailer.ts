@@ -7,7 +7,7 @@ type Mail = {
   html: string;
   text: string;
   replyTo?: string;
-  /** Nome visualizzato del mittente: l'indirizzo resta quello di MAIL_FROM. */
+  /** Nome visualizzato del mittente: l'indirizzo resta quello di EMAIL_FROM. */
   nomeMittente?: string;
 };
 
@@ -27,21 +27,21 @@ function indirizzo(mittente: string): string {
 }
 
 /**
- * Invio con Resend. Variabili: RESEND_API_KEY, MAIL_FROM (es. "Cultivar Olio <info@cultivarolio.it>").
- * In sviluppo, senza RESEND_API_KEY, la mail viene solo scritta nel log; in produzione manca = errore.
+ * Invio con Resend. Variabili: EMAIL_API_KEY, EMAIL_FROM (es. "Cultivar Olio <info@cultivarolio.it>").
+ * In sviluppo, senza EMAIL_API_KEY, la mail viene solo scritta nel log; in produzione manca = errore.
  */
 export async function sendMail({ to, subject, html, text, replyTo, nomeMittente }: Mail): Promise<void> {
-  const chiave = process.env.RESEND_API_KEY;
-  const mittente = process.env.MAIL_FROM;
+  const chiave = process.env.EMAIL_API_KEY;
+  const mittente = process.env.EMAIL_FROM;
 
   if (!chiave) {
     if (process.env.NODE_ENV === "production") {
-      throw new Error("RESEND_API_KEY mancante: invio email non configurato");
+      throw new Error("EMAIL_API_KEY mancante: invio email non configurato");
     }
     console.info("[mailer] (sviluppo, nessun invio reale)", { to, subject, replyTo });
     return;
   }
-  if (!mittente) throw new Error("MAIL_FROM mancante (es. \"Cultivar Olio <info@cultivarolio.it>\")");
+  if (!mittente) throw new Error("EMAIL_FROM mancante (es. \"Cultivar Olio <info@cultivarolio.it>\")");
 
   const resend = new Resend(chiave);
   const { error } = await resend.emails.send({
