@@ -327,7 +327,7 @@ Promotergroup S.p.A.
 **Sede**
 
 ```text
-Via del Carubo sn, Vittoria (RG)
+Via del Carrubo snc, Vittoria (RG)
 ```
 
 **Telefono**

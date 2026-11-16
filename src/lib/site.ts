@@ -31,7 +31,7 @@ export const site = {
 
   titolare: {
     ragioneSociale: "Promotergroup S.p.A.",
-    sede: "Via del Carubo sn, Vittoria (RG)",
+    sede: "Via del Carrubo snc, Vittoria (RG)",
     telefono: "0932 862613",
     email: "info@cultivarolio.it",
     piva: "13178771005",
