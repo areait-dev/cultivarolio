@@ -1,0 +1,233 @@
+{
+    "key": "group_cultivar_documentario",
+    "title": "Documentario",
+    "fields": [
+        {
+            "key": "field_cultivar_documentario_luogo",
+            "label": "Luogo",
+            "name": "luogo",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Città e provincia, es. «Chiaramonte Gulfi (RG)».",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cultivar_documentario_partner",
+            "label": "Partner",
+            "name": "partner",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Es. «Frantoi Cutrera srl».",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cultivar_documentario_durata",
+            "label": "Durata",
+            "name": "durata",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Formato mm:ss, es. 18:40. Lasciare vuoto finché il video non è pronto: la scheda mostra «In arrivo».",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cultivar_documentario_youtube_id",
+            "label": "ID o link del video YouTube",
+            "name": "youtube_id",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Incolla il link del video o il solo ID (11 caratteri). Vuoto = video «in arrivo».",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cultivar_documentario_descrizione",
+            "label": "Descrizione",
+            "name": "descrizione",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "rows": 4,
+            "new_lines": ""
+        },
+        {
+            "key": "field_cultivar_documentario_copertina",
+            "label": "Copertina",
+            "name": "copertina",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Anteprima del video, servita dal sito (nessuna richiesta a YouTube prima del click).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": "",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_cultivar_documentario_illustrazione",
+            "label": "Illustrazione",
+            "name": "illustrazione",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Illustrazione del marchio usata nella scheda quando manca la copertina.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "alloro-bone": "alloro-bone",
+                "alloro-carbone": "alloro-carbone",
+                "canali": "canali",
+                "coppia-olive-bone": "coppia-olive-bone",
+                "coppia-olive-carbone": "coppia-olive-carbone",
+                "foglie-carbone": "foglie-carbone",
+                "foglie-verde": "foglie-verde",
+                "grappolo-carbone": "grappolo-carbone",
+                "oliva-bone": "oliva-bone",
+                "oliva-colore": "oliva-colore",
+                "progetto": "progetto",
+                "rametto-bone": "rametto-bone",
+                "rametto-colore": "rametto-colore",
+                "ramo-colore": "ramo-colore",
+                "ramo-lungo-bone": "ramo-lungo-bone",
+                "ramo-lungo-carbone": "ramo-lungo-carbone",
+                "ramo-lungo-colore": "ramo-lungo-colore",
+                "ramo-olive-bone": "ramo-olive-bone",
+                "ramo-olive-carbone": "ramo-olive-carbone",
+                "storie": "storie",
+                "tralcio-carbone": "tralcio-carbone"
+            },
+            "default_value": false,
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 1,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_cultivar_documentario_data_pubblicazione",
+            "label": "Data di pubblicazione su YouTube",
+            "name": "data_pubblicazione",
+            "aria-label": "",
+            "type": "date_picker",
+            "instructions": "Serve ai dati strutturati per Google. Compare quando il video è online.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "d/m/Y",
+            "return_format": "Y-m-d",
+            "first_day": 1
+        },
+        {
+            "key": "field_cultivar_documentario_segnaposto",
+            "label": "Titolo e testi provvisori",
+            "name": "segnaposto",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Attivo finché titolo e testi non sono definitivi.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Sì",
+            "ui_off_text": "No"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "documentario"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "L'ordine degli episodi si imposta con «Ordine» (Attributi della pagina): 1, 2, 3. Il titolo è il nome della città.",
+    "show_in_rest": 1,
+    "modified": 1788000000
+}

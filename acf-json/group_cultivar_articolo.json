@@ -1,0 +1,92 @@
+{
+    "key": "group_cultivar_articolo",
+    "title": "Articolo del blog",
+    "fields": [
+        {
+            "key": "field_cultivar_articolo_illustrazione",
+            "label": "Illustrazione",
+            "name": "illustrazione",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Illustrazione del marchio usata come anteprima e in chiusura articolo quando manca l'immagine in evidenza.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "alloro-bone": "alloro-bone",
+                "alloro-carbone": "alloro-carbone",
+                "canali": "canali",
+                "coppia-olive-bone": "coppia-olive-bone",
+                "coppia-olive-carbone": "coppia-olive-carbone",
+                "foglie-carbone": "foglie-carbone",
+                "foglie-verde": "foglie-verde",
+                "grappolo-carbone": "grappolo-carbone",
+                "oliva-bone": "oliva-bone",
+                "oliva-colore": "oliva-colore",
+                "progetto": "progetto",
+                "rametto-bone": "rametto-bone",
+                "rametto-colore": "rametto-colore",
+                "ramo-colore": "ramo-colore",
+                "ramo-lungo-bone": "ramo-lungo-bone",
+                "ramo-lungo-carbone": "ramo-lungo-carbone",
+                "ramo-lungo-colore": "ramo-lungo-colore",
+                "ramo-olive-bone": "ramo-olive-bone",
+                "ramo-olive-carbone": "ramo-olive-carbone",
+                "storie": "storie",
+                "tralcio-carbone": "tralcio-carbone"
+            },
+            "default_value": false,
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 1,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_cultivar_articolo_minuti_lettura",
+            "label": "Minuti di lettura",
+            "name": "minuti_lettura",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "Facoltativo: se vuoto si calcola dal numero di parole.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "min": 1,
+            "max": "",
+            "step": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "min"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "articolo"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Titolo, estratto, data, categoria e immagine in evidenza usano i campi normali di WordPress. Nel corpo: H2 = titolo, H3 = sottotitolo, citazione, elenchi, immagini.",
+    "show_in_rest": 1,
+    "modified": 1788000000
+}

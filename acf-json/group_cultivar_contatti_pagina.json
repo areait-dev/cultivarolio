@@ -1,0 +1,85 @@
+{
+    "key": "group_cultivar_contatti_pagina",
+    "title": "Pagina · Contatti",
+    "fields": [
+        {
+            "key": "field_cultivar_contatti_pagina_titolo",
+            "label": "Titolo",
+            "name": "titolo",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_cultivar_contatti_pagina_intro",
+            "label": "Introduzione",
+            "name": "intro",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "rows": 3,
+            "new_lines": ""
+        },
+        {
+            "key": "field_cultivar_contatti_pagina_profili",
+            "label": "Profili del modulo («Chi sei»)",
+            "name": "profili",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Una voce per riga. L'ultima è quella predefinita per i campi non riconosciuti: tenere «Altro» in fondo.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "Consumatore\nBuyer\nOperatore Ho.Re.Ca.\nProduttore\nStampa\nAltro",
+            "rows": 7,
+            "new_lines": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_slug",
+                "operator": "==",
+                "value": "contatti"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 1,
+    "modified": 1788000000
+}
