@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { inviaMessaggio } from "@/lib/email";
 import { getTesti } from "@/lib/dati-sito";
+import { verificaTurnstile } from "@/lib/turnstile";
 import type { Campo, StatoModulo } from "@/app/contatti/modello";
 
 const CAMPI: Campo[] = ["nome", "email", "messaggio", "consenso"];
@@ -78,6 +79,18 @@ export async function POST(request: Request) {
         },
       },
       422,
+    );
+  }
+
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
+  if (!(await verificaTurnstile(grezzo.turnstile, ip))) {
+    return risposta(
+      {
+        esito: "errore",
+        messaggio: "Non siamo riusciti a verificare che tu non sia un robot. Riprova tra poco o scrivici via email.",
+        valori: esito.data,
+      },
+      400,
     );
   }
 

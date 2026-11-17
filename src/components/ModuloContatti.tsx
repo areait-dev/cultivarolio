@@ -9,6 +9,34 @@ import s from "./ModuloContatti.module.css";
 
 const iniziale: StatoModulo = { esito: "inattivo" };
 
+const CHIAVE_TURNSTILE = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+
+type Turnstile = {
+  render(el: HTMLElement, opz: Record<string, unknown>): string;
+  execute(id: string): void;
+  reset(id: string): void;
+  remove(id: string): void;
+};
+const turnstile = () => (window as unknown as { turnstile?: Turnstile }).turnstile;
+
+/** Cloudflare Turnstile si carica solo quando la persona inizia a compilare il modulo. */
+let caricamento: Promise<void> | null = null;
+function caricaTurnstile(): Promise<void> {
+  if (!CHIAVE_TURNSTILE) return Promise.resolve();
+  caricamento ??= new Promise<void>((ok, ko) => {
+    const el = document.createElement("script");
+    el.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+    el.async = true;
+    el.onload = () => ok();
+    el.onerror = () => {
+      caricamento = null;
+      ko(new Error("Turnstile non caricato"));
+    };
+    document.head.appendChild(el);
+  });
+  return caricamento;
+}
+
 /**
  * Modulo contatti: invia in JSON a /api/contatti (validazione con zod + email via Resend).
  * La validazione vera è sul server; il browser mostra errori e conferma senza ricaricare.
@@ -18,6 +46,34 @@ export function ModuloContatti({ profili }: { profili: string[] }) {
   const [stato, setStato] = useState<StatoModulo>(iniziale);
   const [inCorso, setInCorso] = useState(false);
   const riepilogo = useRef<HTMLDivElement>(null);
+  const contenitoreTs = useRef<HTMLDivElement>(null);
+  const widget = useRef<string | null>(null);
+  const attesa = useRef<{ ok(t: string): void; ko(e: Error): void } | null>(null);
+
+  // Ottiene un token nuovo (usa e getta) eseguendo la verifica invisibile di Turnstile
+  async function tokenTurnstile(): Promise<string> {
+    if (!CHIAVE_TURNSTILE) return "";
+    await caricaTurnstile();
+    const ts = turnstile();
+    if (!ts || !contenitoreTs.current) throw new Error("Turnstile non disponibile");
+    return new Promise<string>((ok, ko) => {
+      attesa.current = { ok, ko };
+      if (widget.current === null) {
+        widget.current = ts.render(contenitoreTs.current!, {
+          sitekey: CHIAVE_TURNSTILE,
+          execution: "execute",
+          appearance: "interaction-only",
+          language: "it",
+          callback: (tk: string) => attesa.current?.ok(tk),
+          "error-callback": () => attesa.current?.ko(new Error("Turnstile errore")),
+          "timeout-callback": () => attesa.current?.ko(new Error("Turnstile scaduto")),
+        });
+      } else {
+        ts.reset(widget.current);
+      }
+      ts.execute(widget.current);
+    });
+  }
   const e = stato.errori ?? {};
   const v = stato.esito === "ok" ? {} : (stato.valori ?? {});
 
@@ -29,6 +85,7 @@ export function ModuloContatti({ profili }: { profili: string[] }) {
     const dati = new FormData(form);
     setInCorso(true);
     try {
+      const token = await tokenTurnstile();
       const r = await fetch("/api/contatti", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -39,6 +96,7 @@ export function ModuloContatti({ profili }: { profili: string[] }) {
           messaggio: dati.get("messaggio"),
           consenso: dati.get("consenso") === "on",
           sito_web: dati.get("sito_web"),
+          turnstile: token,
         }),
       });
       const esito = (await r.json()) as StatoModulo;
@@ -66,7 +124,7 @@ export function ModuloContatti({ profili }: { profili: string[] }) {
   }, [stato]);
 
   return (
-    <form className={s.modulo} noValidate onSubmit={invia}>
+    <form className={s.modulo} noValidate onSubmit={invia} onFocus={() => void caricaTurnstile().catch(() => {})}>
       <div ref={riepilogo} tabIndex={-1} aria-live="polite" className={s.esitoContenitore}>
         {stato.esito === "ok" && (
           <Ruvido forma="striscia" tono="lilla" riquadro role="status">
@@ -160,6 +218,9 @@ export function ModuloContatti({ profili }: { profili: string[] }) {
         I campi con <span aria-hidden="true">*</span>
         <span className="sr-only">asterisco</span> sono obbligatori.
       </p>
+
+      {/* Verifica antirobot Cloudflare: invisibile, si mostra solo se serve una conferma */}
+      <div ref={contenitoreTs} />
 
       <div>
         <Pulsante type="submit" aria-disabled={inCorso}>

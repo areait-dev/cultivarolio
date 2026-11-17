@@ -53,6 +53,17 @@ export default async function Cookie() {
             </a>
             .
           </p>
+          <h2>Protezione antispam (Cloudflare Turnstile)</h2>
+          <p>
+            Quando inizi a compilare il modulo contatti, il sito carica Cloudflare Turnstile, che distingue le persone
+            dai robot per proteggere il modulo dallo spam. È uno strumento di sicurezza: non serve a profilarti, non
+            usa cookie pubblicitari e non dipende dalle preferenze sui cookie. Cloudflare può trattare dati tecnici del
+            tuo dispositivo secondo la propria{" "}
+            <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">
+              informativa<span className="sr-only"> (si apre in una nuova scheda)</span>
+            </a>
+            .
+          </p>
           <h2>Video di YouTube</h2>
           <p>
             I documentari sono ospitati su YouTube (Google) e incorporati con la modalità a privacy avanzata
