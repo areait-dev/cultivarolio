@@ -55,7 +55,7 @@
   margin-block: var(--space-7);
 }
 .figura img {
-  width: 100%;
+  /* dimensione naturale (attributo width), mai oltre la colonna: le illustrazioni piccole non si stirano */
   border-radius: var(--radius-m);
 }
 .figura figcaption {
