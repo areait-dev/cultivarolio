@@ -12,6 +12,9 @@ import { assoluto, metaPagina } from "@/lib/seo";
 import { getSeoPagina, getSito, getTesti } from "@/lib/dati-sito";
 import s from "./pagina.module.css";
 
+// ID dello short di @cultivarolio (la parte dopo /shorts/ nell'URL). Vuoto = sezione nascosta.
+const SHORT_YOUTUBE_ID = "EEx6FPduBBs";
+
 // ISR: gli episodi arrivano dal CMS
 export const revalidate = 3600;
 
@@ -93,6 +96,23 @@ export default async function Documentari() {
           </article>
         ))}
       </Sezione>
+
+      {SHORT_YOUTUBE_ID && (
+        <Sezione className={s.inBreve}>
+          <div className={s.short}>
+            <div>
+              <VideoYouTube titolo="Cultivar in breve" youtubeId={SHORT_YOUTUBE_ID} />
+            </div>
+            <div className={s.testo}>
+              <Meta>In breve</Meta>
+              <TitoloDisplay as="h2" dimensione="l" minuscolo={false}>
+                Un assaggio in pochi secondi
+              </TitoloDisplay>
+              <p>Gli short del nostro canale: il racconto dell’olio in formato breve.</p>
+            </div>
+          </div>
+        </Sezione>
+      )}
 
       <InvitoCanale />
     </>

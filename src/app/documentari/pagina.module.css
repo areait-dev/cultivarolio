@@ -37,6 +37,27 @@ section.elenco {
 .scheda dd {
   margin: 0;
 }
+section.inBreve {
+  padding-top: 0;
+}
+.short {
+  display: grid;
+  grid-template-columns: minmax(0, 340px) 1fr;
+  gap: var(--space-7);
+  align-items: center;
+  padding-top: var(--space-7);
+  border-top: var(--bordo-sottile) solid var(--bordo-tenue);
+}
+.short > :first-child > div {
+  aspect-ratio: 9 / 16;
+}
+@media (max-width: 960px) {
+  .short {
+    grid-template-columns: minmax(0, 340px);
+    justify-content: center;
+    gap: var(--space-5);
+  }
+}
 @media (max-width: 960px) {
   .episodio {
     grid-template-columns: 1fr;
