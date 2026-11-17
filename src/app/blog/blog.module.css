@@ -3,8 +3,9 @@ section.corpoArticolo {
   padding-top: var(--space-7); /* section.: specificità sopra .sezione di base.css */
 }
 /* Testo allineato a sinistra con il titolo dell'hero (stessa colonna stretta) */
-.prosaArticolo {
-  margin-inline: 0;
+section.corpoArticolo .prosaArticolo {
+  margin-inline: 0; /* specificità sopra .prosa, qualunque sia l'ordine dei CSS */
+  max-width: var(--colonna-articolo);
 }
 .titolo {
   margin-bottom: var(--space-5);

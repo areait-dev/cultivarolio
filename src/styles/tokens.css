@@ -82,6 +82,7 @@
   --contenitore-stretto: 53.75rem; /* 860 */
   --misura-testo: 62ch;
   --misura-lettura: 68ch;
+  --colonna-articolo: 42rem;   /* 672: stessa larghezza per titolo e corpo dell'articolo */
   /* Breakpoint (solo riferimento: le media query CSS non leggono variabili)
      --bp-mobile: 760px;  --bp-tablet: 960px; */
 
