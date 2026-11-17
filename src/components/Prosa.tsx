@@ -34,7 +34,16 @@ export function Prosa({ blocchi, className }: { blocchi: Blocco[]; className?: s
           }
           case "immagine":
             return (
-              <figure key={i} className={s.figura}>
+              <figure
+                key={i}
+                className={
+                  b.allineamento === "sinistra"
+                    ? `${s.figura} ${s.sinistra}`
+                    : b.allineamento === "destra"
+                      ? `${s.figura} ${s.destra}`
+                      : s.figura
+                }
+              >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={b.immagine.src}

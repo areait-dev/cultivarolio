@@ -58,6 +58,32 @@
   /* dimensione naturale (attributo width), mai oltre la colonna: le illustrazioni piccole non si stirano */
   border-radius: var(--radius-m);
 }
+/* Immagine con testo di fianco (alignleft/alignright di WordPress); su schermi stretti torna a tutta larghezza */
+@media (min-width: 640px) {
+  .sinistra,
+  .destra {
+    max-width: 45%;
+    margin-block: var(--space-1) var(--space-3);
+  }
+  .sinistra {
+    float: left;
+    margin-right: var(--space-6);
+  }
+  .destra {
+    float: right;
+    margin-left: var(--space-6);
+  }
+  /* il paragrafo accanto parte alla stessa altezza dell'immagine */
+  .prosa > .sinistra + *,
+  .prosa > .destra + * {
+    margin-top: 0;
+  }
+}
+/* il testo non scorre oltre un nuovo titolo */
+.prosa h2,
+.prosa h3 {
+  clear: both;
+}
 .figura figcaption {
   margin-top: var(--space-2);
   font-size: var(--fs-sm);

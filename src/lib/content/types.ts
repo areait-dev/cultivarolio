@@ -22,7 +22,7 @@ export type Blocco =
   | { tipo: "sottotitolo"; testo: string }
   | { tipo: "citazione"; testo: string; fonte?: string }
   | { tipo: "elenco"; voci: string[]; ordinato?: boolean }
-  | { tipo: "immagine"; immagine: Immagine; didascalia?: string };
+  | { tipo: "immagine"; immagine: Immagine; didascalia?: string; allineamento?: "sinistra" | "destra" };
 
 export type Articolo = {
   slug: string;

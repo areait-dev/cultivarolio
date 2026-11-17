@@ -25,6 +25,13 @@ function numero(v?: string): number | undefined {
   return Number.isFinite(n) && n > 0 ? n : undefined;
 }
 
+function allineamentoDi(img: HTMLElement): "sinistra" | "destra" | undefined {
+  const classi = img.getAttribute("class") ?? "";
+  if (/\balignleft\b/.test(classi)) return "sinistra";
+  if (/\balignright\b/.test(classi)) return "destra";
+  return undefined;
+}
+
 export async function htmlToBlocchi(html: string, risolviMedia?: RisolviMedia): Promise<Blocco[]> {
   const blocchi: Blocco[] = [];
 
@@ -46,10 +53,12 @@ export async function htmlToBlocchi(html: string, risolviMedia?: RisolviMedia): 
         url = url || media.src;
       }
     }
+    const allineamento = allineamentoDi(img);
     blocchi.push({
       tipo: "immagine",
       immagine: { src: url, alt, larghezza: larghezza ?? LARGHEZZA_DEFAULT, altezza: altezza ?? ALTEZZA_DEFAULT },
       ...(didascalia ? { didascalia } : {}),
+      ...(allineamento ? { allineamento } : {}),
     });
   }
 
@@ -75,8 +84,12 @@ export async function htmlToBlocchi(html: string, risolviMedia?: RisolviMedia): 
       }
       case "p": {
         const t = pulisci(el.textContent);
+        const immagini = el.querySelectorAll("img");
+        // Immagine allineata (alignleft/alignright di WordPress): va prima del paragrafo, così il testo le scorre accanto
+        const allineate = immagini.some((img) => allineamentoDi(img));
+        if (allineate) for (const img of immagini) await immagine(img);
         if (t) blocchi.push({ tipo: "paragrafo", testo: t });
-        for (const img of el.querySelectorAll("img")) await immagine(img);
+        if (!allineate) for (const img of immagini) await immagine(img);
         return;
       }
       case "blockquote": {
