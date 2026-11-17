@@ -85,6 +85,13 @@
   .prosa > .destra + * {
     margin-top: 0;
   }
+  /* se l'immagine segue un titolo ha più margine sopra: il paragrafo ne ha lo stesso, per restare allineato in alto */
+  .prosa > h2 + .sinistra + *,
+  .prosa > h2 + .destra + *,
+  .prosa > h3 + .sinistra + *,
+  .prosa > h3 + .destra + * {
+    margin-top: var(--space-7);
+  }
 }
 /* il testo non scorre oltre un nuovo titolo */
 .prosa h2,
