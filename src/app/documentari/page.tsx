@@ -100,15 +100,15 @@ export default async function Documentari() {
       {SHORT_YOUTUBE_ID && (
         <Sezione className={s.inBreve}>
           <div className={s.short}>
-            <div>
-              <VideoYouTube titolo="Cultivar in breve" youtubeId={SHORT_YOUTUBE_ID} />
-            </div>
             <div className={s.testo}>
               <Meta>In breve</Meta>
               <TitoloDisplay as="h2" dimensione="l" minuscolo={false}>
                 Un assaggio in pochi secondi
               </TitoloDisplay>
               <p>Gli short del nostro canale: il racconto dell’olio in formato breve.</p>
+            </div>
+            <div className={s.videoShort}>
+              <VideoYouTube titolo="Cultivar in breve" youtubeId={SHORT_YOUTUBE_ID} />
             </div>
           </div>
         </Sezione>
