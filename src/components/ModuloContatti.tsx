@@ -13,7 +13,6 @@ const CHIAVE_TURNSTILE = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
 type Turnstile = {
   render(el: HTMLElement, opz: Record<string, unknown>): string;
-  execute(id: string): void;
   reset(id: string): void;
   remove(id: string): void;
 };
@@ -48,44 +47,49 @@ export function ModuloContatti({ profili }: { profili: string[] }) {
   const riepilogo = useRef<HTMLDivElement>(null);
   const contenitoreTs = useRef<HTMLDivElement>(null);
   const widget = useRef<string | null>(null);
-  const attesa = useRef<{ ok(t: string): void; ko(e: Error): void } | null>(null);
-
-  // Ottiene un token nuovo (usa e getta) eseguendo la verifica invisibile di Turnstile
-  async function tokenTurnstile(): Promise<string> {
-    if (!CHIAVE_TURNSTILE) return "";
-    await caricaTurnstile();
-    const ts = turnstile();
-    if (!ts || !contenitoreTs.current) throw new Error("Turnstile non disponibile");
-    return new Promise<string>((ok, ko) => {
-      attesa.current = { ok, ko };
-      if (widget.current === null) {
-        widget.current = ts.render(contenitoreTs.current!, {
-          sitekey: CHIAVE_TURNSTILE,
-          execution: "execute",
-          appearance: "interaction-only",
-          language: "it",
-          callback: (tk: string) => attesa.current?.ok(tk),
-          "error-callback": () => attesa.current?.ko(new Error("Turnstile errore")),
-          "timeout-callback": () => attesa.current?.ko(new Error("Turnstile scaduto")),
-        });
-      } else {
-        ts.reset(widget.current);
-      }
-      ts.execute(widget.current);
-    });
-  }
+  const [token, setToken] = useState("");
+  const [erroreVerifica, setErroreVerifica] = useState("");
   const e = stato.errori ?? {};
   const v = stato.esito === "ok" ? {} : (stato.valori ?? {});
+
+  // Mostra la casella "Non sono un robot" la prima volta che si inizia a compilare il modulo
+  async function mostraVerifica() {
+    if (!CHIAVE_TURNSTILE || widget.current !== null) return;
+    widget.current = ""; // evita doppi render mentre lo script si carica
+    try {
+      await caricaTurnstile();
+      const ts = turnstile();
+      if (!ts || !contenitoreTs.current) throw new Error("Turnstile non disponibile");
+      widget.current = ts.render(contenitoreTs.current, {
+        sitekey: CHIAVE_TURNSTILE,
+        appearance: "always",
+        language: "it",
+        callback: (tk: string) => {
+          setToken(tk);
+          setErroreVerifica("");
+        },
+        "expired-callback": () => setToken(""),
+        "error-callback": () => setToken(""),
+      });
+    } catch {
+      widget.current = null;
+      setErroreVerifica("Non riusciamo a caricare la verifica. Riprova tra poco o scrivici via email.");
+    }
+  }
 
   // Il pulsante resta attivo (così non perde il focus): durante l'invio si blocca un secondo invio qui
   async function invia(ev: FormEvent<HTMLFormElement>) {
     ev.preventDefault();
     if (inCorso) return;
+    if (CHIAVE_TURNSTILE && !token) {
+      setErroreVerifica("Conferma di non essere un robot spuntando la casella.");
+      void mostraVerifica();
+      return;
+    }
     const form = ev.currentTarget;
     const dati = new FormData(form);
     setInCorso(true);
     try {
-      const token = await tokenTurnstile();
       const r = await fetch("/api/contatti", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -115,6 +119,10 @@ export function ModuloContatti({ profili }: { profili: string[] }) {
       });
     } finally {
       setInCorso(false);
+      // il token vale una sola volta: dopo l'invio serve una nuova verifica
+      setToken("");
+      const ts = turnstile();
+      if (ts && widget.current) ts.reset(widget.current);
     }
   }
 
@@ -124,7 +132,7 @@ export function ModuloContatti({ profili }: { profili: string[] }) {
   }, [stato]);
 
   return (
-    <form className={s.modulo} noValidate onSubmit={invia} onFocus={() => void caricaTurnstile().catch(() => {})}>
+    <form className={s.modulo} noValidate onSubmit={invia} onFocus={() => void mostraVerifica()}>
       <div ref={riepilogo} tabIndex={-1} aria-live="polite" className={s.esitoContenitore}>
         {stato.esito === "ok" && (
           <Ruvido forma="striscia" tono="lilla" riquadro role="status">
@@ -219,8 +227,17 @@ export function ModuloContatti({ profili }: { profili: string[] }) {
         <span className="sr-only">asterisco</span> sono obbligatori.
       </p>
 
-      {/* Verifica antirobot Cloudflare: invisibile, si mostra solo se serve una conferma */}
-      <div ref={contenitoreTs} />
+      {/* Verifica antirobot Cloudflare (casella "Non sono un robot") */}
+      {CHIAVE_TURNSTILE && (
+        <div className={s.campo}>
+          <div ref={contenitoreTs} />
+          {erroreVerifica && (
+            <p role="alert" className={s.errore}>
+              {erroreVerifica}
+            </p>
+          )}
+        </div>
+      )}
 
       <div>
         <Pulsante type="submit" aria-disabled={inCorso}>
