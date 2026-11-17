@@ -64,6 +64,7 @@ export default async function Articolo({ params }: Props) {
       <HeroInterno
         tono="kraft"
         stretto
+        titoloAmpio
         occhiello={
           <span className={s.occhiello}>
             <Link href="/blog">Blog</Link> · {a.categoria.nome}

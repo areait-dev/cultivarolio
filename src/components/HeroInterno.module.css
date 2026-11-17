@@ -23,6 +23,10 @@
 .titolo.titoloAmpio {
   max-width: 24ch;
 }
+/* Colonna stretta (articoli): il titolo occupa tutta la colonna del testo, senza a capo forzati */
+:global(.contenitore--stretto) .titolo.titoloAmpio {
+  max-width: none;
+}
 .intro {
   font-size: var(--fs-lg);
   line-height: 1.6;
