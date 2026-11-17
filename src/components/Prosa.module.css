@@ -78,7 +78,7 @@
   .prosa h2 + .destra,
   .prosa h3 + .sinistra,
   .prosa h3 + .destra {
-    margin-top: var(--space-5);
+    margin-top: var(--space-7);
   }
   /* il paragrafo accanto parte alla stessa altezza dell'immagine */
   .prosa > .sinistra + *,
