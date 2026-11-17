@@ -73,6 +73,13 @@
     float: right;
     margin-left: var(--space-6);
   }
+  /* più aria tra titolo e immagine di fianco (batte `.prosa h3 + *`) */
+  .prosa h2 + .sinistra,
+  .prosa h2 + .destra,
+  .prosa h3 + .sinistra,
+  .prosa h3 + .destra {
+    margin-top: var(--space-5);
+  }
   /* il paragrafo accanto parte alla stessa altezza dell'immagine */
   .prosa > .sinistra + *,
   .prosa > .destra + * {
