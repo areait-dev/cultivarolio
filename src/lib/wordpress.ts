@@ -173,6 +173,17 @@ export async function wpGet<T>(
   }
 }
 
+/**
+ * Per i contenuti del blog un errore di WordPress (403, timeout…) NON deve diventare «lista vuota»:
+ * la pagina ISR verrebbe rigenerata vuota e sostituirebbe quella buona. Lanciando, Next mantiene
+ * l'ultima versione riuscita e riprova alla richiesta successiva.
+ * Se WordPress non è configurato (mock/sviluppo) wpGet ritorna null e si resta sul vuoto.
+ */
+function richiesto<T>(risposta: T[] | null, cosa: string): T[] {
+  if (risposta === null && BASE) throw new Error(`[wordpress] ${cosa} non disponibili: mantengo l'ultima versione in cache`);
+  return risposta ?? [];
+}
+
 // ---------------------------------------------------------------------------
 // Categorie
 // ---------------------------------------------------------------------------
@@ -185,7 +196,7 @@ const getCategorieWpBase = cache(async (): Promise<(Categoria & { id: number })[
     hide_empty: false,
     _fields: "id,slug,name",
   });
-  return (termini ?? []).map((t) => ({ id: t.id, slug: t.slug, nome: testoPulito(t.name) }));
+  return richiesto(termini, "categorie").map((t) => ({ id: t.id, slug: t.slug, nome: testoPulito(t.name) }));
 });
 
 export async function getCategorieWp(): Promise<Categoria[]> {
@@ -249,7 +260,7 @@ export async function getArticoliWp({
     },
     { bozza: true },
   );
-  return (post ?? []).map(sintesiArticolo);
+  return richiesto(post, "articoli").map(sintesiArticolo);
 }
 
 async function mediaPerId(id: number): Promise<Immagine | null> {
@@ -263,7 +274,7 @@ export async function getArticoloWp(slug: string): Promise<Articolo | null> {
     { slug, per_page: 1, _embed: "wp:featuredmedia,wp:term", _fields: CAMPI_ARTICOLO },
     { bozza: true },
   );
-  const p = lista?.[0];
+  const p = richiesto(lista, "articolo")[0];
   if (!p) return null;
   return { ...sintesiArticolo(p), corpo: await htmlToBlocchi(p.content?.rendered ?? "", mediaPerId) };
 }
