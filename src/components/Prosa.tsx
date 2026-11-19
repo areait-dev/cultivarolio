@@ -94,6 +94,27 @@ export function Prosa({ blocchi, className }: { blocchi: Blocco[]; className?: s
       case "immagine":
         elementi.push(<Figura key={i} b={b} />);
         break;
+      case "gruppo":
+        elementi.push(
+          <div key={i} className={s.gruppo}>
+            <figure className={s.gruppoFigura} style={{ width: b.immagine.larghezza }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={b.immagine.src}
+                alt={b.immagine.alt}
+                width={b.immagine.larghezza}
+                height={b.immagine.altezza}
+                loading="lazy"
+              />
+            </figure>
+            <div className={s.gruppoTesto}>
+              {b.testi.map((t, k) => (
+                <Testo key={k} b={t} />
+              ))}
+            </div>
+          </div>,
+        );
+        break;
     }
   }
 

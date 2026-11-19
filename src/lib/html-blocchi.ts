@@ -33,7 +33,34 @@ function allineamentoDi(img: HTMLElement): "sinistra" | "destra" | undefined {
 }
 
 export async function htmlToBlocchi(html: string, risolviMedia?: RisolviMedia): Promise<Blocco[]> {
-  const blocchi: Blocco[] = [];
+  let blocchi: Blocco[] = [];
+
+  /**
+   * div.wp-block-group con un'immagine: immagine + testo del gruppo affiancati.
+   * I gruppi annidati si appiattiscono: i blocchi si raccolgono da tutto l'albero interno.
+   * Ritorna false se il gruppo non contiene immagini (resta un semplice contenitore).
+   */
+  async function gruppo(el: HTMLElement): Promise<boolean> {
+    if (!el.querySelector("img")) return false;
+    const fuori = blocchi;
+    blocchi = [];
+    await visita(el.childNodes);
+    const interni = blocchi;
+    blocchi = fuori;
+
+    const i = interni.findIndex((b) => b.tipo === "immagine");
+    const foto = interni[i];
+    if (foto?.tipo !== "immagine") {
+      blocchi.push(...interni);
+      return true;
+    }
+    const testi = interni.filter((b): b is Extract<Blocco, { tipo: "paragrafo" | "elenco" }> => b.tipo === "paragrafo" || b.tipo === "elenco");
+    const altro = interni.filter((b, k) => k !== i && !testi.includes(b as (typeof testi)[number]));
+    if (testi.length) blocchi.push({ tipo: "gruppo", immagine: foto.immagine, testi });
+    else blocchi.push(foto);
+    blocchi.push(...altro);
+    return true;
+  }
 
   async function immagine(img: HTMLElement, didascalia?: string) {
     const src = img.getAttribute("src");
@@ -52,6 +79,12 @@ export async function htmlToBlocchi(html: string, risolviMedia?: RisolviMedia): 
         alt = alt || media.alt;
         url = url || media.src;
       }
+    }
+    // Larghezza scelta nell'editor (style="width:300px"): vale più dell'attributo e l'altezza si adegua
+    const scelta = numero(img.getAttribute("style")?.match(/(?:^|;)\s*width\s*:\s*(\d+(?:\.\d+)?)px/i)?.[1]);
+    if (scelta && larghezza && altezza && scelta !== larghezza) {
+      altezza = Math.round((altezza * scelta) / larghezza);
+      larghezza = scelta;
     }
     const allineamento = allineamentoDi(img);
     blocchi.push({
@@ -124,6 +157,7 @@ export async function htmlToBlocchi(html: string, risolviMedia?: RisolviMedia): 
       case "hr":
         return;
       default: {
+        if (tag === "div" && /\bwp-block-group\b/.test(el.getAttribute("class") ?? "") && (await gruppo(el))) return;
         if (TAG_CONTENITORE.has(tag)) return visita(el.childNodes);
         // Tag non previsto (tabelle, pre, iframe, span isolati…): il testo non si perde
         const t = pulisci(el.textContent);

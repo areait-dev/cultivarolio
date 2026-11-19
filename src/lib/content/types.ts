@@ -22,7 +22,9 @@ export type Blocco =
   | { tipo: "sottotitolo"; testo: string }
   | { tipo: "citazione"; testo: string; fonte?: string }
   | { tipo: "elenco"; voci: string[]; ordinato?: boolean }
-  | { tipo: "immagine"; immagine: Immagine; didascalia?: string; allineamento?: "sinistra" | "destra" };
+  | { tipo: "immagine"; immagine: Immagine; didascalia?: string; allineamento?: "sinistra" | "destra" }
+  /** Blocco «Gruppo» di WordPress: immagine (alla larghezza scelta nell'editor) con il testo del gruppo accanto */
+  | { tipo: "gruppo"; immagine: Immagine; testi: Extract<Blocco, { tipo: "paragrafo" | "elenco" }>[] };
 
 export type Articolo = {
   slug: string;

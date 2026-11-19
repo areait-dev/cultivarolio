@@ -109,6 +109,44 @@
     width: 100%;
   }
 }
+/* Blocco «Gruppo» di WordPress: immagine piccola a sinistra, testo del gruppo a fianco */
+.gruppo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+.gruppoFigura {
+  flex: 0 0 auto;
+  max-width: 40%;
+  margin: 0;
+  float: none;
+}
+.gruppoFigura img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-m);
+}
+.gruppoTesto {
+  flex: 1;
+  min-width: 0;
+}
+.gruppoTesto > * + * {
+  margin-top: var(--space-5);
+}
+.prosa h2 + .gruppo,
+.prosa h3 + .gruppo {
+  margin-top: var(--space-4);
+}
+@media (max-width: 640px) {
+  .gruppo {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .gruppoFigura {
+    max-width: 100%;
+  }
+}
 .figura figcaption {
   margin-top: var(--space-2);
   font-size: var(--fs-sm);
