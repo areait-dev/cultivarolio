@@ -105,14 +105,9 @@ export default async function IlProgetto() {
       </Sezione>
 
       <Sezione labelledby="chi">
-        <div className={`griglia-2 ${s.allunga}`}>
-          <div className={s.colonna}>
-            <TitoloSezione id="chi">{t.chi.titolo}</TitoloSezione>
-            <Intro>{t.chi.realizzazione}</Intro>
-          </div>
-          <Ruvido forma="pannello" tono="verde" riquadro>
-            <p className={s.consorzio}>{t.chi.consorzio}</p>
-          </Ruvido>
+        <div className={s.colonna}>
+          <TitoloSezione id="chi">{t.chi.titolo}</TitoloSezione>
+          <Intro className={s.chiLargo}>{t.chi.realizzazione}</Intro>
         </div>
       </Sezione>
 

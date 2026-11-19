@@ -69,7 +69,6 @@
   gap: var(--space-4);
   align-content: start;
 }
-.consorzio {
-  font-size: var(--fs-md);
-  line-height: var(--lh-testo);
+.chiLargo {
+  max-width: none;
 }

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Illustrazione, Numero, Pennellata } from "@/components/Blocchi";
+import { Illustrazione, Pennellata } from "@/components/Blocchi";
 import { JsonLd } from "@/components/JsonLd";
 import { InvitoCanale } from "@/components/InvitoCanale";
 import { Pulsante } from "@/components/Pulsante";
@@ -92,10 +92,6 @@ export default async function Home() {
             {t.breve.paragrafi.map((p) => (
               <Intro key={p}>{p}</Intro>
             ))}
-            <div className={s.numeri}>
-              <Numero cifra={documentari.length || 3} titolo="territori" testo={t.numeri.territori} />
-              <Numero cifra={documentari.length || 3} titolo="documentari" testo={t.numeri.documentari} />
-            </div>
             <div>
               <Pulsante href="/il-progetto">
                 {t.breve.pulsante}
